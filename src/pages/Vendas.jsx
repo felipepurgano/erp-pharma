@@ -1,31 +1,8 @@
-// Vendas.jsx
-import React, { useState } from "react";
-import Sidebar from "../layouts/Sidebar";
-import styles from "./Vendas.module.css";
-import { FiShoppingCart, FiTrash } from "react-icons/fi";
-
-const produtosMock = [
-  { codigo: '7891234567890', nome: 'Dipirona 500mg', laboratorio: 'MedPharma', classe: 'Analgésico', principio: 'Dipirona Monoidratada', preco: 5.00 },
-  { codigo: '7891234567891', nome: 'Paracetamol 750mg', laboratorio: 'BioMed', classe: 'Antitérmico', principio: 'Paracetamol', preco: 4.50 },
-  { codigo: '7891234567892', nome: 'Ibuprofeno 400mg', laboratorio: 'SaúdePlus', classe: 'Anti-inflamatório', principio: 'Ibuprofeno', preco: 6.00 },
-  { codigo: '7891234567893', nome: 'Amoxicilina 500mg', laboratorio: 'PharmaLife', classe: 'Antibiótico', principio: 'Amoxicilina Tri-Hidratada', preco: 7.80 },
-  { codigo: '7891234567894', nome: 'Omeprazol 20mg', laboratorio: 'GastroCare', classe: 'Antiácido', principio: 'Omeprazol Magnésico', preco: 3.70 },
-  { codigo: '7891234567895', nome: 'Loratadina 10mg', laboratorio: 'Alergix', classe: 'Antialérgico', principio: 'Loratadina', preco: 2.90 },
-  { codigo: '7891234567896', nome: 'Losartana 50mg', laboratorio: 'CardioPharma', classe: 'Antipertensivo', principio: 'Losartana Potássica', preco: 4.20 },
-  { codigo: '7891234567897', nome: 'Simeticona 125mg', laboratorio: 'DigestWell', classe: 'Antiflatulento', principio: 'Simeticona', preco: 3.50 },
-  { codigo: '7891234567898', nome: 'Cetoconazol 200mg', laboratorio: 'DermaCare', classe: 'Antifúngico', principio: 'Cetoconazol', preco: 9.10 },
-  { codigo: '7891234567899', nome: 'AAS 100mg', laboratorio: 'CardioPlus', classe: 'Antiagregante', principio: 'Ácido Acetilsalicílico', preco: 1.90 },
-];
-
-// Mock da função que simula o envio da venda para backend e retorna um número de cupom
-const enviarVendaMock = (venda) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const numeroCupom = Math.floor(Math.random() * 10000) + 1;
-      resolve({ numero_cupom: numeroCupom });
-    }, 1000);
-  });
-};
+import { useState, useEffect } from "react";
+import Sidebar from "@/layouts/Sidebar";
+import styles from "@/pages/Vendas.module.css";
+import { FiTrash, FiShoppingCart, FiUsers } from "react-icons/fi";
+import { produtosMock, enviarVendaMock, clientesMock } from "@/utils/mocks";
 
 export default function Vendas() {
   const [codigo, setCodigo] = useState("");
@@ -36,17 +13,83 @@ export default function Vendas() {
   const [operacao, setOperacao] = useState("cupom");
   const [numeroCupom, setNumeroCupom] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [clienteSelecionado, setClienteSelecionado] = useState(null);
+  const [clienteBuscaNome, setClienteBuscaNome] = useState("");
+  const [clienteBuscaCpf, setClienteBuscaCpf] = useState("");
 
-  const produto = produtosMock.find(
-    (p) =>
-      p.codigo === codigo ||
-      (buscaNome && p.nome.toLowerCase().includes(buscaNome.toLowerCase()))
-  );
+
+  // Modal de Clientes
+  const [showModal, setShowModal] = useState(false);
+  const [clienteBusca, setClienteBusca] = useState("");
+  const [clientesFiltrados, setClientesFiltrados] = useState(clientesMock);
+
+  const abrirModalClientes = () => setShowModal(true);
+  const fecharModalClientes = () => {
+    setShowModal(false);
+    setClienteBuscaNome("");
+    setClienteBuscaCpf("");
+    setClientesFiltrados([]);
+  };
+
+  const selecionarCliente = (cliente) => {
+  setClienteSelecionado(cliente);
+  fecharModalClientes();
+};
+
+  useEffect(() => {
+    if (clienteBuscaNome.trim() === "" && clienteBuscaCpf.trim() === "") {
+      setClientesFiltrados([]);
+      return;
+    }
+
+    const filtrados = clientesMock.filter((cliente) =>
+      cliente.nome.toLowerCase().includes(clienteBuscaNome.toLowerCase()) &&
+      cliente.cpf.includes(clienteBuscaCpf)
+    );
+    setClientesFiltrados(filtrados);
+  }, [clienteBuscaNome, clienteBuscaCpf]);
+
+    const produtosFiltrados = produtosMock.filter((p) => {
+    const nomeValido =
+      buscaNome.length >= 3 &&
+      p.nome.toLowerCase().includes(buscaNome.toLowerCase());
+    const codigoValido = codigo && p.codigo === codigo;
+    return nomeValido || codigoValido;
+  });
 
   const calcularValorFinal = (preco, qtd, desc) => {
     const descontoDecimal = (desc || 0) / 100;
     return preco * qtd * (1 - descontoDecimal);
   };
+
+  const adicionarProdutoSelecionado = (produtoSelecionado) => {
+  if (!produtoSelecionado || !quantidade) return;
+
+  const preco = produtoSelecionado.preco;
+  const qtd = parseInt(quantidade);
+  const desc = parseFloat(desconto || 0);
+  const valorFinal = calcularValorFinal(preco, qtd, desc);
+
+      setItens([
+    ...itens,
+    {
+      codigo: produtoSelecionado.codigo,
+      nome: produtoSelecionado.nome,
+      laboratorio: produtoSelecionado.laboratorio,
+      classe: produtoSelecionado.classe,
+      principio: produtoSelecionado.principio,
+      desconto: desc,
+      quantidade: qtd,
+      preco,
+      valorFinal,
+    },
+  ]);
+
+  setCodigo("");
+  setBuscaNome("");
+  setQuantidade("");
+  setDesconto("");
+};
 
   const adicionarProduto = () => {
     if (!produto || !quantidade) return;
@@ -75,7 +118,7 @@ export default function Vendas() {
     setBuscaNome("");
     setQuantidade("");
     setDesconto("");
-    setNumeroCupom(null); // limpa cupom ao adicionar produto novo
+    setNumeroCupom(null);
   };
 
   const removerItem = (index) => {
@@ -94,7 +137,6 @@ export default function Vendas() {
 
   const valorTotal = itens.reduce((acc, item) => acc + item.valorFinal, 0);
 
-  // Função para finalizar venda
   const finalizarVenda = async () => {
     if (itens.length === 0) {
       alert("Adicione pelo menos um item antes de finalizar a venda.");
@@ -105,7 +147,7 @@ export default function Vendas() {
     try {
       const resposta = await enviarVendaMock({ itens, total: valorTotal });
       setNumeroCupom(resposta.numero_cupom);
-      setItens([]); // Limpa o carrinho após finalizar
+      setItens([]);
       alert(`Venda finalizada! Número do cupom: ${resposta.numero_cupom}`);
     } catch (error) {
       alert("Erro ao finalizar venda.");
@@ -114,8 +156,7 @@ export default function Vendas() {
     }
   };
 
-  // Limpa preview de produto quando buscaNome é apagado
-  React.useEffect(() => {
+  useEffect(() => {
     if (buscaNome.trim() === "") {
       setCodigo("");
       setQuantidade("");
@@ -128,15 +169,27 @@ export default function Vendas() {
       <div className={styles.container}>
         <div className={styles.header}>
           <h1 className={styles.title}>Tela de Vendas</h1>
-          <select
-            value={operacao}
-            onChange={(e) => setOperacao(e.target.value)}
-            className={styles.operacaoSelect}
-          >
-            <option value="orcamento">Orçamento</option>
-            <option value="cupom">Cupom de Venda</option>
-            <option value="nfce">NFC-e</option>
-          </select>
+          {clienteSelecionado && (
+            <div className={styles.clienteSelecionado}>
+              Cliente selecionado: <strong>{clienteSelecionado.nome}</strong> ({clienteSelecionado.cpf})
+            </div>
+          )}
+          <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+            <select
+              value={operacao}
+              onChange={(e) => setOperacao(e.target.value)}
+              className={styles.operacaoSelect}
+            >
+              <option value="orcamento">Orçamento</option>
+              <option value="cupom">Cupom de Venda</option>
+              <option value="nfce">NFC-e</option>
+            </select>
+
+            <button className={styles.button} onClick={abrirModalClientes}>
+              <FiUsers style={{ marginRight: "6px" }} />
+              Clientes
+            </button>
+          </div>
         </div>
 
         <div className={styles.formRow}>
@@ -167,16 +220,25 @@ export default function Vendas() {
           />
         </div>
 
-        {produto && buscaNome.trim() !== "" && (
-          <div className={styles.produtoPreview}>
-            <div>
-              <p><strong>Medicamento:</strong> {produto.nome}</p>
-              <p><strong>Laboratório:</strong> {produto.laboratorio}</p>
-              <p><strong>Classe:</strong> {produto.classe}</p>
-              <p><strong>Princípio Ativo:</strong> {produto.principio}</p>
-              <p><strong>Preço:</strong> R$ {produto.preco.toFixed(2)}</p>
-            </div>
-            <button className={styles.button} onClick={adicionarProduto}>Adicionar</button>
+        {produtosFiltrados.length > 0 && (
+          <div className={styles.listaProdutos}>
+            {produtosFiltrados.map((produto) => (
+              <div key={produto.codigo} className={styles.produtoPreview}>
+                <div>
+                  <p><strong>Medicamento:</strong> {produto.nome}</p>
+                  <p><strong>Laboratório:</strong> {produto.laboratorio}</p>
+                  <p><strong>Classe:</strong> {produto.classe}</p>
+                  <p><strong>Princípio Ativo:</strong> {produto.principio}</p>
+                  <p><strong>Preço:</strong> R$ {produto.preco.toFixed(2)}</p>
+                </div>
+                <button
+                  className={styles.button}
+                  onClick={() => adicionarProdutoSelecionado(produto)}
+                >
+                  Adicionar
+                </button>
+              </div>
+            ))}
           </div>
         )}
 
@@ -241,6 +303,49 @@ export default function Vendas() {
         {numeroCupom && (
           <div style={{ marginTop: "1rem", fontSize: "1.2rem", color: "#007bff" }}>
             Venda finalizada! Número do cupom: <strong>{numeroCupom}</strong>
+          </div>
+        )}
+
+        {/* Modal de Clientes */}
+        {showModal && (
+          <div className={styles.modalOverlay}>
+            <div className={styles.modalContent}>
+              <h2 style={{ marginBottom: "10px" }}>Clientes</h2>
+              <div className={styles.modalSearchRow}>
+                <input
+                  type="text"
+                  placeholder="Buscar por nome"
+                  value={clienteBuscaNome}
+                  onChange={(e) => setClienteBuscaNome(e.target.value)}
+                  className={styles.modalInput}
+                />
+                <input
+                  type="text"
+                  placeholder="Buscar por CPF"
+                  value={clienteBuscaCpf}
+                  onChange={(e) => setClienteBuscaCpf(e.target.value)}
+                  className={styles.modalInput}
+                />
+              </div>
+              <ul className={styles.listaClientes}>
+                {clientesFiltrados.map((cliente) => (
+                  <li key={cliente.id} className={styles.clienteItem}>
+                    <div>
+                      <strong>{cliente.nome}</strong> - {cliente.cpf}
+                    </div>
+                    <button
+                      className={styles.addClienteBtn}
+                      onClick={() => selecionarCliente(cliente)}
+                    >
+                      Adicionar
+                    </button>
+                  </li>
+                ))}
+              </ul>
+              <button className={styles.button} onClick={fecharModalClientes}>
+                Fechar
+              </button>
+            </div>
           </div>
         )}
       </div>

@@ -68,8 +68,7 @@
   align-items: center;
   background-color: #e8f8f6;
   padding: 1rem;
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
+  border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -91,7 +90,6 @@
 .gridHeader,
 .gridRow {
   display: grid;
-  /* 6 colunas + 1 para o botão de excluir */
   grid-template-columns: repeat(6, minmax(120px, 1fr)) 40px;
   gap: 0.75rem;
   padding: 0.5rem 0;
@@ -191,9 +189,15 @@
   background: white;
   padding: 2rem;
   border-radius: 1rem;
-  width: 600px;
+  width: 1100px;
   max-height: 80vh;
   overflow-y: auto;
+}
+
+.modalSearchRow {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .modalInput {
@@ -207,12 +211,8 @@
 .listaClientes {
   list-style: none;
   padding: 0;
+  margin-top: 1rem;
   margin-bottom: 1rem;
-}
-
-.listaClientes li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #eee;
 }
 
 .clienteSelecionado {
@@ -225,39 +225,64 @@
   border-left: 4px solid #007bff;
 }
 
-.listaClientes {
-  list-style: none;
-  padding: 0;
-  margin-top: 1rem;
-}
-
-.clienteItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #f8f8f8;
-  padding: 0.6rem 1rem;
-  margin-bottom: 0.5rem;
-  border-radius: 6px;
-}
-
 .addClienteBtn {
-  background: #28a745;
+  background-color: #007bff;
   color: white;
   border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
+  padding: 6px 10px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: background 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .addClienteBtn:hover {
-  background: #218838;
+  background-color: #0056b3;
 }
 
-.modalSearchRow {
+.clientesBox {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+}
+
+.gridClientes {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 500px;
+  overflow-y: auto;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background-color: #fefefe;
+}
+
+.gridClientes .gridHeader,
+.gridClientes .gridRow {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(100px, 1fr));
+  gap: 10px;
+  padding: 8px 15px;
+  align-items: center;
+}
+
+.gridClientes .gridHeader {
+  font-weight: bold;
+  background-color: #f1f5f9;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.gridClientes .gridRow {
+  background-color: #fff;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.gridClientes .gridRow:hover {
+  background-color: #f9f9f9;
 }

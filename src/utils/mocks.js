@@ -25,27 +25,188 @@ export const produtosMock = [
 
 // Lista fictícia de clientes
 export const clientesMock = [
-  { id: 1, nome: "Maria Silva", cpf: "123.456.789-00" },
-  { id: 2, nome: "João Souza", cpf: "987.654.321-00" },
-  { id: 3, nome: "Ana Costa", cpf: "456.789.123-00" },
-  { id: 4, nome: "Pedro Oliveira", cpf: "111.222.333-44" },
-  { id: 5, nome: "Carla Martins", cpf: "555.666.777-88" },
-  { id: 6, nome: "Bruno Lima", cpf: "999.888.777-66" },
-  { id: 7, nome: "Fernanda Rocha", cpf: "321.654.987-00" },
-  { id: 8, nome: "Lucas Fernandes", cpf: "741.852.963-12" },
-  { id: 9, nome: "Juliana Reis", cpf: "369.258.147-00" },
-  { id: 10, nome: "Paulo Santos", cpf: "654.321.987-10" },
-  { id: 11, nome: "Vanessa Moura", cpf: "741.963.852-20" },
-  { id: 12, nome: "Ricardo Alves", cpf: "111.333.555-77" },
-  { id: 13, nome: "Débora Mendes", cpf: "999.000.888-77" },
-  { id: 14, nome: "Marcos Tavares", cpf: "666.777.888-99" },
-  { id: 15, nome: "Bianca Lopes", cpf: "222.444.666-00" },
-  { id: 16, nome: "Felipe Garcia", cpf: "555.333.111-22" },
-  { id: 17, nome: "Tatiane Azevedo", cpf: "888.999.000-11" },
-  { id: 18, nome: "Eduardo Ramos", cpf: "444.222.111-55" },
-  { id: 19, nome: "Aline Peixoto", cpf: "777.555.333-22" },
-  { id: 20, nome: "Roberto Silva", cpf: "333.666.999-88" }
+  {
+    id: 1,
+    nome: "João da Silva",
+    cpf: "12345678900",
+    endereco: "Rua A, 123",
+    telefone: "(11) 99999-0001",
+    cep: "01234-000",
+    cidade: "São Paulo"
+  },
+  {
+    id: 2,
+    nome: "Maria Oliveira",
+    cpf: "98765432100",
+    endereco: "Av. Central, 456",
+    telefone: "(11) 98888-1111",
+    cep: "02222-000",
+    cidade: "Guarulhos"
+  },
+  {
+    id: 3,
+    nome: "Carlos Souza",
+    cpf: "45678912300",
+    endereco: "Rua das Flores, 789",
+    telefone: "(11) 97777-2222",
+    cep: "03333-000",
+    cidade: "Osasco"
+  },
+  {
+    id: 4,
+    nome: "Ana Paula Lima",
+    cpf: "32165498700",
+    endereco: "Rua B, 321",
+    telefone: "(11) 96666-3333",
+    cep: "04444-000",
+    cidade: "Santo André"
+  },
+  {
+    id: 5,
+    nome: "Pedro Henrique",
+    cpf: "85274196300",
+    endereco: "Rua C, 654",
+    telefone: "(11) 95555-4444",
+    cep: "05555-000",
+    cidade: "São Bernardo do Campo"
+  },
+  {
+    id: 6,
+    nome: "Luciana Ferreira",
+    cpf: "96385274100",
+    endereco: "Av. Paulista, 1000",
+    telefone: "(11) 94444-5555",
+    cep: "06666-000",
+    cidade: "São Paulo"
+  },
+  {
+    id: 7,
+    nome: "Roberto Almeida",
+    cpf: "74125896300",
+    endereco: "Rua D, 111",
+    telefone: "(11) 93333-6666",
+    cep: "07777-000",
+    cidade: "Mauá"
+  },
+  {
+    id: 8,
+    nome: "Fernanda Costa",
+    cpf: "15975348600",
+    endereco: "Rua E, 222",
+    telefone: "(11) 92222-7777",
+    cep: "08888-000",
+    cidade: "Diadema"
+  },
+  {
+    id: 9,
+    nome: "Marcelo Teixeira",
+    cpf: "35715925800",
+    endereco: "Av. das Nações, 999",
+    telefone: "(11) 91111-8888",
+    cep: "09999-000",
+    cidade: "Ribeirão Pires"
+  },
+  {
+    id: 10,
+    nome: "Juliana Mendes",
+    cpf: "95135785200",
+    endereco: "Rua F, 333",
+    telefone: "(11) 90000-9999",
+    cep: "10101-000",
+    cidade: "São Caetano do Sul"
+  },
+  {
+    id: 11,
+    nome: "Bruno Lima",
+    cpf: "25896314700",
+    endereco: "Rua G, 444",
+    telefone: "(11) 98888-7777",
+    cep: "11111-000",
+    cidade: "Campinas"
+  },
+  {
+    id: 12,
+    nome: "Larissa Rocha",
+    cpf: "78945612300",
+    endereco: "Av. Brasil, 555",
+    telefone: "(11) 97777-6666",
+    cep: "12121-000",
+    cidade: "Barueri"
+  },
+  {
+    id: 13,
+    nome: "Ricardo Gomes",
+    cpf: "12378945600",
+    endereco: "Rua H, 666",
+    telefone: "(11) 96666-5555",
+    cep: "13131-000",
+    cidade: "Carapicuíba"
+  },
+  {
+    id: 14,
+    nome: "Patrícia Andrade",
+    cpf: "96314785200",
+    endereco: "Rua I, 777",
+    telefone: "(11) 95555-4444",
+    cep: "14141-000",
+    cidade: "Cotia"
+  },
+  {
+    id: 15,
+    nome: "André Santos",
+    cpf: "74196385200",
+    endereco: "Rua J, 888",
+    telefone: "(11) 94444-3333",
+    cep: "15151-000",
+    cidade: "Jandira"
+  },
+  {
+    id: 16,
+    nome: "Tatiane Barros",
+    cpf: "36925814700",
+    endereco: "Rua K, 999",
+    telefone: "(11) 93333-2222",
+    cep: "16161-000",
+    cidade: "Itapevi"
+  },
+  {
+    id: 17,
+    nome: "Eduardo Martins",
+    cpf: "65498732100",
+    endereco: "Rua L, 101",
+    telefone: "(11) 92222-1111",
+    cep: "17171-000",
+    cidade: "Taboão da Serra"
+  },
+  {
+    id: 18,
+    nome: "Camila Pires",
+    cpf: "85296374100",
+    endereco: "Av. Rio Branco, 202",
+    telefone: "(11) 91111-0000",
+    cep: "18181-000",
+    cidade: "Suzano"
+  },
+  {
+    id: 19,
+    nome: "Thiago Ribeiro",
+    cpf: "14725836900",
+    endereco: "Rua M, 303",
+    telefone: "(11) 90000-1111",
+    cep: "19191-000",
+    cidade: "Ferraz de Vasconcelos"
+  },
+  {
+    id: 20,
+    nome: "Vanessa Souza",
+    cpf: "32178965400",
+    endereco: "Rua N, 404",
+    telefone: "(11) 98888-2222",
+    cep: "20202-000",
+    cidade: "Poá"
+  }
 ];
+
 
 // Simula envio da venda e retorna um número de cupom
 export const enviarVendaMock = ({ itens, total }) => {

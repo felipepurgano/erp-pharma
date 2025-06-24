@@ -36,18 +36,21 @@ export default function Vendas() {
   fecharModalClientes();
 };
 
-  useEffect(() => {
-    if (clienteBuscaNome.trim() === "" && clienteBuscaCpf.trim() === "") {
-      setClientesFiltrados([]);
-      return;
-    }
+    useEffect(() => {
+      const nomeOk = clienteBuscaNome.trim().length >= 3;
+      const cpfOk = clienteBuscaCpf.trim().length >= 3;
 
-    const filtrados = clientesMock.filter((cliente) =>
-      cliente.nome.toLowerCase().includes(clienteBuscaNome.toLowerCase()) &&
-      cliente.cpf.includes(clienteBuscaCpf)
-    );
-    setClientesFiltrados(filtrados);
-  }, [clienteBuscaNome, clienteBuscaCpf]);
+      if (!nomeOk && !cpfOk) {
+        setClientesFiltrados([]);
+        return;
+      }
+
+      const filtrados = clientesMock.filter((cliente) =>
+        cliente.nome.toLowerCase().includes(clienteBuscaNome.toLowerCase()) &&
+        cliente.cpf.includes(clienteBuscaCpf)
+      );
+      setClientesFiltrados(filtrados);
+    }, [clienteBuscaNome, clienteBuscaCpf]);
 
     const produtosFiltrados = produtosMock.filter((p) => {
     const nomeValido =
@@ -307,47 +310,64 @@ export default function Vendas() {
         )}
 
         {/* Modal de Clientes */}
-        {showModal && (
-          <div className={styles.modalOverlay}>
-            <div className={styles.modalContent}>
-              <h2 style={{ marginBottom: "10px" }}>Clientes</h2>
-              <div className={styles.modalSearchRow}>
-                <input
-                  type="text"
-                  placeholder="Buscar por nome"
-                  value={clienteBuscaNome}
-                  onChange={(e) => setClienteBuscaNome(e.target.value)}
-                  className={styles.modalInput}
-                />
-                <input
-                  type="text"
-                  placeholder="Buscar por CPF"
-                  value={clienteBuscaCpf}
-                  onChange={(e) => setClienteBuscaCpf(e.target.value)}
-                  className={styles.modalInput}
-                />
-              </div>
-              <ul className={styles.listaClientes}>
-                {clientesFiltrados.map((cliente) => (
-                  <li key={cliente.id} className={styles.clienteItem}>
-                    <div>
-                      <strong>{cliente.nome}</strong> - {cliente.cpf}
+          {showModal && (
+            <div className={styles.modalOverlay}>
+              <div className={styles.modalContent}>
+                <h2 style={{ marginBottom: "10px" }}>Clientes</h2>
+
+                <div style={{ display: "flex", gap: "10px", marginBottom: "15px" }}>
+                  <input
+                    type="text"
+                    placeholder="Buscar por nome"
+                    value={clienteBuscaNome}
+                    onChange={(e) => setClienteBuscaNome(e.target.value)}
+                    className={styles.modalInput}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Buscar por CPF"
+                    value={clienteBuscaCpf}
+                    onChange={(e) => setClienteBuscaCpf(e.target.value)}
+                    className={styles.modalInput}
+                  />
+                </div>
+
+                <div className={styles.gridClientes}>
+                  <div className={styles.gridHeader}>
+                    <span>Nome</span>
+                    <span>CPF</span>
+                    <span>Endereço</span>
+                    <span>Telefone</span>
+                    <span>CEP</span>
+                    <span>Cidade</span>
+                    <span></span>
+                  </div>
+                  {clientesFiltrados.map((cliente) => (
+                    <div className={styles.gridRow} key={cliente.id}>
+                      <span>{cliente.nome}</span>
+                      <span>{cliente.cpf}</span>
+                      <span>{cliente.endereco}</span>
+                      <span>{cliente.telefone}</span>
+                      <span>{cliente.cep}</span>
+                      <span>{cliente.cidade}</span>
+                      <span>
+                        <button
+                          className={styles.addClienteBtn}
+                          onClick={() => selecionarCliente(cliente)}
+                        >
+                          Adicionar
+                        </button>
+                      </span>
                     </div>
-                    <button
-                      className={styles.addClienteBtn}
-                      onClick={() => selecionarCliente(cliente)}
-                    >
-                      Adicionar
-                    </button>
-                  </li>
-                ))}
-              </ul>
-              <button className={styles.button} onClick={fecharModalClientes}>
-                Fechar
-              </button>
+                  ))}
+                </div>
+
+                <button className={styles.button} onClick={fecharModalClientes} style={{ marginTop: "20px" }}>
+                  Fechar
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     </Sidebar>
   );

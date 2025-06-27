@@ -1,288 +1,729 @@
+/* pages/Vendas.module.css - Com tons de verde corrigidos e modal mais largo */
+
 .container {
-  padding: 2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f9fafb;
-  min-height: 100vh;
-  box-sizing: border-box;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9fafb; /* Fundo suave, quase branco */
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: #333;
+}
+
+/* Título da Seção */
+.title {
+    font-size: 2.2rem;
+    color: #00b89f; /* Verde principal do seu tema */
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 15px 20px;
+    background-color: #d1f2eb; /* Tom de verde mais claro para o título */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-top: 0;
+}
+
+.subtitle { /* Adicionado para subtítulos, se for usar */
+    font-size: 1.8rem;
+    color: #00b89f; /* Verde principal do seu tema */
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    gap: 1rem;
+    background-color: #ffffff; /* Fundo branco para o container do header */
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
 }
 
-.title {
-  font-size: 2rem;
-  color: #00b89f;
-  font-weight: 600;
+.clienteSelecionado {
+    background-color: #e0f8f0; /* Tom de verde bem claro */
+    border: 1px solid #a3e8d2; /* Borda em tom de verde */
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #00796b; /* Verde mais escuro para o texto */
+    font-weight: 500;
+    flex-grow: 1;
+    text-align: center;
 }
 
 .operacaoSelect {
-  padding: 0.6rem 1rem;
-  font-size: 1rem;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  background-color: white;
-  cursor: pointer;
-  transition: border-color 0.3s;
+    padding: 0.85rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #cdd4df; /* Borda neutra para o select */
+    font-size: 1rem;
+    background-color: white;
+    appearance: none;
+    /* Cor da seta para o verde do seu tema */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%2300b89f%22%3E%3Cpath%20d%3D%22M7%2010l5%205%205-5z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+.operacaoSelect:focus {
+    outline: none;
+    border-color: #00b89f; /* Verde principal no foco */
+    box-shadow: 0 0 0 3px rgba(0, 184, 159, 0.25); /* Sombra com tom de verde */
 }
 
-.operacaoSelect:hover {
-  border-color: #00b89f;
+/* Botão genérico para Clientes */
+.button {
+    background-color: #00b89f; /* Verde principal do seu tema */
+    color: white;
+    padding: 0.85rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 184, 159, 0.2); /* Sombra com tom de verde */
 }
 
-.formRow {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+.button:hover {
+    background-color: #009882; /* Verde mais escuro no hover */
+    transform: translateY(-2px);
 }
 
-.formRow input {
-  padding: 0.75rem;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  background-color: white;
-  transition: border 0.3s ease;
+/* Seção de Busca e Adição de Produtos */
+/* A classe .searchBar no JSX foi substituída por .formRow no CSS para agrupar os inputs de busca, qtd e desconto */
+.formRow { /* Container dos inputs de busca, qtd, desconto */
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem linha */
+    gap: 1.5rem; /* Espaçamento entre os itens - ISTO RESOLVE O "GRUDADO" */
+    margin-bottom: 1.5rem;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    align-items: flex-end; /* Alinha os itens na base */
+    justify-content: flex-start; /* Alinha os itens no início para melhor leitura em formulários */
 }
 
-.formRow input:focus {
-  outline: none;
-  border: 1px solid #00b89f;
-  box-shadow: 0 0 0 2px rgba(0, 184, 159, 0.2);
+.inputField {
+    padding: 0.9rem 1.2rem;
+    border: 1px solid #ccc; /* Borda neutra para campos de texto */
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    transition: all 0.3s ease;
+    flex: 1; /* Permite que o input cresça e ocupe o espaço */
+    min-width: 180px; /* Reduzido levemente para melhor flexibilidade em larguras intermediárias */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+    background-color: white;
 }
 
-.listaProdutos {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+.inputField::placeholder {
+    color: #999;
 }
 
-.produtoPreview {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #e8f8f6;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+.inputField:focus {
+    outline: none;
+    border-color: #00b89f; /* Verde principal no foco */
+    box-shadow: 0 0 0 3px rgba(0, 184, 159, 0.25); /* Sombra com tom de verde */
+}
+
+/* Exibição dos produtos filtrados */
+.listaProdutos { /* (antiga .searchResults) */
+    background-color: #ffffff;
+    border: 1px solid #e0eaf3;
+    border-radius: 12px;
+    max-height: 350px;
+    overflow-y: auto;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+}
+
+.listaProdutos h3 { /* Cabeçalho da lista de produtos (se houver) */
+    margin: 0;
+    padding: 1rem 1.5rem;
+    background-color: #e0f2f1; /* Tom de verde claro */
+    border-bottom: 1px solid #d1f2eb;
+    font-size: 1.2rem;
+    color: #00796b; /* Verde mais escuro */
+    border-radius: 12px 12px 0 0;
+    font-weight: 600;
+}
+
+.produtoPreview { /* (antiga .searchResultItem) */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid #f0f4f7;
+    transition: background-color 0.2s ease;
+    flex-wrap: wrap; /* Permite que o conteúdo do preview quebre linha */
+    gap: 0.5rem; /* Espaçamento interno no preview */
+}
+
+.produtoPreview:last-child {
+    border-bottom: none;
+}
+
+.produtoPreview:hover {
+    background-color: #f7f9fb;
 }
 
 .produtoPreview p {
-  margin: 0;
-  font-size: 1rem;
-  color: #333;
+    margin: 0.25rem 0;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.4;
+    flex: 1 1 auto; /* Permite que o texto cresça e encolha */
+    min-width: 150px; /* Garante que o texto não fique muito espremido */
 }
 
-.grid {
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 1.25rem;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
-  margin-bottom: 1.5rem;
-  overflow-x: auto;
+.produtoPreview strong {
+    color: #333;
+}
+
+.buttonAdicionarProduto { /* Botão "Adicionar" do resultado da busca */
+    background-color: #00b89f; /* Verde principal do seu tema */
+    color: white;
+    padding: 0.7rem 1.4rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 184, 159, 0.1); /* Sombra com tom de verde */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Impede que o botão encolha */
+}
+
+.buttonAdicionarProduto:hover {
+    background-color: #009882; /* Verde mais escuro no hover */
+    transform: translateY(-1px);
+}
+
+/* Estilos para o grid de produtos no carrinho (itens da venda) */
+.grid { /* (antiga .carrinhoSection) */
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    overflow-x: auto; /* Permite scroll horizontal se o conteúdo for muito largo */
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
 }
 
 .gridHeader,
 .gridRow {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(120px, 1fr)) 40px;
-  gap: 0.75rem;
-  padding: 0.5rem 0;
-  align-items: center;
-  white-space: nowrap;
+    display: grid;
+    grid-template-columns: 1fr 2fr 0.8fr 0.6fr 1fr 1fr 0.5fr; /* Mantido igual, ajustar se necessário */
+    gap: 0.75rem;
+    padding: 0.8rem 0.5rem;
+    align-items: center;
+    white-space: nowrap; /* Impede que o texto quebre */
 }
 
-.footerInfo {
-  margin-bottom: 1rem;
-  font-size: 1rem;
-  background-color: #f1f5f9;
-  padding: 0.75rem;
-  border-radius: 10px;
-  color: #333;
+.gridHeader {
+    background-color: #e0f2f1; /* Tom de verde claro para o cabeçalho do grid */
+    font-weight: 600;
+    border-bottom: 1px solid #d1f2eb; /* Borda em tom de verde */
+    border-radius: 10px 10px 0 0;
+    color: #00796b; /* Verde mais escuro para o texto do cabeçalho */
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
-.footerRight {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 1.5rem;
-  margin-top: 1rem;
-  flex-wrap: wrap;
+.gridRow {
+    border-bottom: 1px solid #f0f4f7;
+    transition: background-color 0.2s ease;
 }
 
-.total {
-  font-size: 1.5rem;
-  color: #007bff;
-  font-weight: bold;
+.gridRow:last-child {
+    border-bottom: none;
 }
 
-.button {
-  background-color: #00b89f;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+.gridRow:hover {
+    background-color: #f7f9fb;
 }
 
-.button:hover {
-  background-color: #009882;
+.gridRow span {
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adiciona "..." se o texto for muito longo */
+    color: #444;
 }
 
 .qtdInput {
-  width: 60px;
-  padding: 0.4rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  text-align: center;
-  transition: border-color 0.3s ease;
+    width: 65px;
+    padding: 6px;
+    border: 1px solid #ccc; /* Borda neutra */
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+.qtdInput:focus {
+    outline: none;
+    border-color: #00b89f; /* Verde principal no foco */
+    box-shadow: 0 0 0 2px rgba(0, 184, 159, 0.2); /* Sombra com tom de verde */
 }
 
-.qtdInput:focus {
-  outline: none;
-  border-color: #00b89f;
-  box-shadow: 0 0 0 2px rgba(0, 184, 159, 0.2);
+/* Botões de +/- na quantidade (não vi no seu JSX, mas mantidos se usar) */
+.quantityButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: #00b89f; /* Verde principal do seu tema */
+    transition: color 0.2s ease;
+}
+
+.quantityButton:hover {
+    color: #009882; /* Verde mais escuro no hover */
 }
 
 .deleteButton {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 1.4rem;
-  color: #e74c3c;
-  transition: transform 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #dc3545; /* Vermelho padrão para delete */
+    transition: transform 0.2s ease, color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
 
 .deleteButton:hover {
-  transform: scale(1.2);
+    color: #c82333; /* Vermelho mais escuro no hover */
+    transform: scale(1.1);
 }
 
+.noItemsMessage {
+    text-align: center;
+    padding: 30px;
+    color: #888;
+    font-style: italic;
+    font-size: 1.1em;
+    background-color: #fcfcfc;
+    border-radius: 0 0 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.footerRight { /* (antiga .totalSection) */
+    display: flex;
+    justify-content: flex-end; /* Alinha o conteúdo à direita */
+    align-items: center;
+    flex-wrap: wrap; /* Permite que os itens quebrem linha em telas menores */
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #e0e0e0;
+}
+
+.total {
+    font-size: 2rem;
+    color: #00796b; /* Verde mais escuro para o texto "Total" */
+    font-weight: 700;
+}
+
+.total strong {
+    color: #00b89f; /* Verde principal para o valor total */
+}
+
+.buttonFinalizar {
+    background-color: #00b89f; /* Verde principal do seu tema para finalizar */
+    color: white;
+    padding: 1.1rem 2.2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Espaço entre ícone e texto, se houver */
+    transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 184, 159, 0.2); /* Sombra com tom de verde */
+}
+
+.buttonFinalizar:hover:not(:disabled) {
+    background-color: #009882; /* Verde mais escuro no hover */
+    transform: translateY(-2px);
+}
+
+.buttonFinalizar:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+.cupomMessage { /* Nova classe */
+    text-align: center;
+    padding: 1rem;
+    background-color: #d1f2eb; /* Um tom de verde claro */
+    color: #00796b; /* Um tom de verde mais escuro */
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: 1px solid #a3e8d2;
+}
+
+/* Estilos para o Modal */
 .modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
 .modalContent {
-  background: white;
-  padding: 2rem;
-  border-radius: 1rem;
-  width: 1100px;
-  max-height: 80vh;
-  overflow-y: auto;
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+    width: 90%;
+    max-width: 1600px; /* Mantendo a largura máxima de 1600px */
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-.modalSearchRow {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
+.modalContent h2 {
+    color: #00796b; /* Verde mais escuro para o título do modal */
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+.modalSearchControls {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os inputs quebrem linha no modal */
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .modalInput {
-  flex: 1;
-  padding: 0.5rem;
-  font-size: 1rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+    padding: 0.85rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #ccc; /* Borda neutra para o input do modal */
+    font-size: 1rem;
+    flex-grow: 1; /* Permite que o input cresça */
+    min-width: 200px; /* Garante um tamanho mínimo */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+    transition: all 0.3s ease;
 }
-
-.listaClientes {
-  list-style: none;
-  padding: 0;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.clienteSelecionado {
-  margin: 1rem 0;
-  font-size: 1rem;
-  color: #333;
-  background-color: #f3f3f3;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  border-left: 4px solid #007bff;
-}
-
-.addClienteBtn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s ease;
-}
-
-.addClienteBtn:hover {
-  background-color: #0056b3;
-}
-
-.clientesBox {
-  margin-top: 2rem;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  background-color: #f9f9f9;
+.modalInput:focus {
+    outline: none;
+    border-color: #00b89f; /* Verde principal no foco */
+    box-shadow: 0 0 0 3px rgba(0, 184, 159, 0.25); /* Sombra com tom de verde */
 }
 
 .gridClientes {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-height: 500px;
-  overflow-y: auto;
-  border: 1px solid #eee;
-  border-radius: 10px;
-  background-color: #fefefe;
+    border: 1px solid #e0eaf3;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    flex-grow: 1; /* Permite que o grid ocupe o espaço disponível no modal */
+    overflow-y: auto; /* Adiciona scroll se o conteúdo for muito grande */
 }
 
 .gridClientes .gridHeader,
 .gridClientes .gridRow {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(100px, 1fr));
-  gap: 10px;
-  padding: 8px 15px;
-  align-items: center;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 2fr 1fr 0.8fr 1fr 0.5fr; /* Colunas para o grid de clientes */
+    padding: 0.8rem 0.5rem;
 }
 
 .gridClientes .gridHeader {
-  font-weight: bold;
-  background-color: #f1f5f9;
-  border-bottom: 1px solid #ddd;
-  position: sticky;
-  top: 0;
-  z-index: 1;
+    background-color: #e0f2f1; /* Tom de verde claro para o cabeçalho do grid de clientes */
+    color: #00796b; /* Verde mais escuro para o texto do cabeçalho */
+    position: sticky; /* Fixa o cabeçalho ao rolar */
+    top: 0;
+    z-index: 1;
 }
 
 .gridClientes .gridRow {
-  background-color: #fff;
-  border-radius: 6px;
-  transition: background 0.2s ease;
+    border-bottom: 1px solid #f0f4f7;
+}
+.gridClientes .gridRow:last-child {
+    border-bottom: none;
 }
 
-.gridClientes .gridRow:hover {
-  background-color: #f9f9f9;
+.gridClientes .gridRow span {
+    color: #444;
+}
+
+.addClienteBtn {
+    background-color: #00b89f; /* Verde principal para adicionar cliente */
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.addClienteBtn:hover {
+    background-color: #009882; /* Verde mais escuro no hover */
+    transform: translateY(-1px);
+}
+
+.buttonCloseModal {
+    background-color: #6c757d; /* Cinza para fechar - mantido neutro */
+    color: white;
+    padding: 0.9rem 1.8rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    display: block;
+    margin: 25px auto 0; /* Centraliza o botão de fechar */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.buttonCloseModal:hover {
+    background-color: #5a6268; /* Cinza mais escuro no hover */
+    transform: translateY(-2px);
+}
+
+/* --- Paginação --- */
+.paginationControls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Espaçamento entre os elementos de paginação */
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #eee; /* Uma linha para separar do grid */
+}
+
+.paginationButton {
+    background-color: #f0f0f0; /* Cor de fundo para botões de paginação */
+    color: #333; /* Cor do texto */
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.paginationButton:hover:not(:disabled) {
+    background-color: #e0e0e0;
+    border-color: #aaa;
+}
+
+.paginationButton:disabled {
+    background-color: #f8f8f8;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.paginationInfo {
+    font-size: 1rem;
+    color: #555;
+}
+
+
+/* --- Responsividade --- */
+@media (max-width: 1200px) {
+    /* Mantido ou ajustar conforme necessidade */
+}
+
+@media (max-width: 992px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .clienteSelecionado {
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+    .header > div:last-child {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+    .operacaoSelect, .button {
+        flex-grow: 1;
+    }
+    .formRow {
+        /* Permite que o flex-wrap entre em ação para colunas */
+        padding: 1.5rem;
+        justify-content: space-around; /* Pode ajustar a distribuição em telas menores */
+    }
+    .inputField {
+        min-width: unset; /* Remove o min-width para permitir que ele encolha mais */
+        width: 100%; /* Ocupa a largura total quando em coluna */
+    }
+    .footerRight {
+        flex-direction: column; /* Alinha o total e o botão verticalmente */
+        align-items: center; /* Centraliza horizontalmente na coluna */
+        gap: 1rem;
+    }
+    .buttonFinalizar {
+        width: 100%;
+        max-width: 300px;
+    }
+    .gridHeader, .gridRow {
+        grid-template-columns: 1.5fr 1.8fr 0.6fr 0.8fr 0.5fr; /* Remove desconto e valor unit */
+    }
+    .gridHeader span:nth-child(3), /* Desconto */
+    .gridRow span:nth-child(3),
+    .gridHeader span:nth-child(5), /* Valor Unit */
+    .gridRow span:nth-child(5) {
+        display: none;
+    }
+    .gridClientes .gridHeader,
+    .gridClientes .gridRow {
+        grid-template-columns: 1.5fr 1fr 1.5fr 0.8fr 0.5fr;
+    }
+    .gridClientes .gridRow span:nth-child(5), /* Oculta CEP em tablets */
+    .gridClientes .gridHeader span:nth-child(5) {
+        display: none;
+    }
+    .modalContent { /* Ajuste para o modal em tablets */
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 1.8rem;
+        padding: 12px 15px;
+    }
+    .formRow {
+        flex-direction: column; /* Força os inputs a ficarem um abaixo do outro */
+        align-items: stretch; /* Estica os inputs para preencher a largura */
+    }
+    .inputField {
+        min-width: unset; /* Garante que não haja min-width impedindo o preenchimento */
+        width: 100%;
+    }
+    .gridHeader, .gridRow {
+        grid-template-columns: 1fr 1.5fr 0.8fr 0.5fr; /* Apenas Cód., Medicamento, Qtd, Ações */
+    }
+    .gridHeader span:nth-child(4), /* Qtd */
+    .gridRow span:nth-child(4) {
+        order: 1;
+    }
+    .gridHeader span:last-child, /* Ações */
+    .gridRow span:last-child {
+        order: 2;
+    }
+    .gridClientes .gridHeader,
+    .gridClientes .gridRow {
+        grid-template-columns: 1.5fr 1fr 1.5fr 0.5fr;
+    }
+    .gridClientes .gridRow span:nth-child(4), /* Oculta Telefone em telas muito pequenas */
+    .gridClientes .gridHeader span:nth-child(4) {
+        display: none;
+    }
+    .modalContent { /* Ajuste para o modal em celulares */
+        max-width: 95%;
+        padding: 1rem;
+    }
+    /* Oculta os títulos do grid no celular, mostra os itens empilhados */
+    .gridHeader {
+        display: none;
+    }
+    .gridRow {
+        grid-template-columns: 1fr; /* Cada item ocupa 100% */
+        text-align: left;
+        border-bottom: 1px dotted #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    .gridRow span {
+        text-align: left;
+        display: block; /* Cada span em sua própria linha */
+        margin-bottom: 5px;
+    }
+    .gridRow span:last-child {
+        margin-top: 10px;
+        text-align: center;
+    }
+    .gridClientes .gridHeader {
+        display: none;
+    }
+    .gridClientes .gridRow {
+        grid-template-columns: 1fr;
+        border-bottom: 1px dotted #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    .gridClientes .gridRow span {
+        text-align: left;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .gridClientes .gridRow span:nth-child(3), /* Endereço */
+    .gridClientes .gridRow span:nth-child(4), /* Telefone */
+    .gridClientes .gridRow span:nth-child(5) { /* CEP */
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0.8rem;
+    }
+    .title {
+        font-size: 1.4rem;
+        padding: 10px;
+    }
+    .header > div:last-child {
+        flex-direction: column;
+    }
+    .produtoPreview {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+    .buttonAdicionarProduto {
+        width: 100%;
+        justify-content: center;
+        padding: 0.8rem;
+    }
+    /* As regras de .gridHeader e .gridRow de 768px já cobrem isso,
+     * mas reforcei para o grid de clientes. */
 }

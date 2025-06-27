@@ -1,0 +1,268 @@
+/* styles/Fornecedores.module.css */
+
+.container {
+    padding: 2rem;
+    background-color: var(--background-color); /* Supondo uma variável global de cor de fundo */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+    color: var(--text-color); /* Supondo uma variável global de cor de texto */
+}
+
+.title {
+    font-size: 2.2rem;
+    color: #00b89f; /* Verde principal do seu tema */
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 15px 20px;
+    background-color: #d1f2eb; /* Tom de verde mais claro para o título */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-top: 0;
+}
+
+.formSection {
+    background-color: var(--card-background-color); /* Cor de fundo para seções (ex: branco mais claro) */
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.formRow {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+}
+
+.inputGroup {
+    flex: 1; /* Faz com que os grupos de input se expandam */
+    min-width: 250px; /* Garante um tamanho mínimo para cada input */
+    display: flex;
+    flex-direction: column;
+}
+
+.inputGroup label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color-light); /* Cor de texto um pouco mais clara para labels */
+}
+
+.inputField {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border-color); /* Cor de borda para inputs */
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: var(--input-background-color); /* Fundo do input */
+    color: var(--text-color);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inputField:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 184, 159, 0.2); /* Sombra ao focar */
+    outline: none;
+}
+
+.formActions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: flex-end;
+}
+
+.buttonSave,
+.buttonClear {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonSave {
+    background-color: var(--primary-color); /* Cor principal */
+    color: var(--button-text-color); /* Cor do texto do botão (geralmente branco) */
+}
+
+.buttonSave:hover {
+    background-color: #008f7b; /* Tom mais escuro para o hover */
+    transform: translateY(-1px);
+}
+
+.buttonClear {
+    background-color: var(--secondary-button-background-color); /* Ex: cinza claro */
+    color: var(--secondary-button-text-color); /* Ex: cinza escuro */
+    border: 1px solid var(--border-color);
+}
+
+.buttonClear:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-1px);
+}
+
+.searchAndGridSection {
+    background-color: var(--card-background-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.searchBar .inputField {
+    flex-grow: 1;
+    padding-right: 2.5rem; /* Espaço para o ícone */
+}
+
+.searchIcon {
+    position: absolute;
+    right: 1rem;
+    color: var(--text-color-light);
+    font-size: 1.2rem;
+}
+
+.grid {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gridHeader {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) 100px; /* Ajuste as colunas conforme seus dados */
+    background-color: var(--grid-header-background); /* Cor de fundo do cabeçalho do grid */
+    padding: 0.8rem 1rem;
+    font-weight: 600;
+    color: var(--grid-header-text-color); /* Cor do texto do cabeçalho */
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.gridRow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) 100px; /* Mesma estrutura do header */
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border-color-light); /* Bordas mais claras entre as linhas */
+    background-color: var(--card-background-color);
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.gridRow:nth-child(even) {
+    background-color: var(--grid-row-even-background); /* Cor diferente para linhas pares */
+}
+
+.gridRow:hover {
+    background-color: var(--grid-row-hover-background); /* Cor ao passar o mouse */
+}
+
+.gridActions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center; /* Centraliza os botões de ação */
+}
+
+.actionButton,
+.actionButtonRed {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0.4rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.actionButton {
+    color: var(--primary-color);
+}
+
+.actionButton:hover {
+    background-color: rgba(0, 184, 159, 0.1);
+    color: #008f7b;
+}
+
+.actionButtonRed {
+    color: #e74c3c; /* Cor para ação de exclusão */
+}
+
+.actionButtonRed:hover {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: #c0392b;
+}
+
+.noItemsMessage {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-color-light);
+    font-style: italic;
+}
+
+/* Responsividade básica */
+@media (max-width: 768px) {
+    .formRow {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .inputGroup {
+        min-width: unset; /* Remove o min-width para que se ajuste 100% */
+        width: 100%;
+    }
+
+    .gridHeader,
+    .gridRow {
+        grid-template-columns: 1fr; /* Colunas empilhadas */
+        gap: 0.5rem;
+        text-align: center;
+        padding: 0.8rem;
+    }
+
+    .gridHeader span,
+    .gridRow span {
+        display: block; /* Cada item ocupa sua própria linha */
+    }
+
+    .gridRow span:first-child {
+        font-weight: 600; /* Destaca o nome principal em mobile */
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .gridActions {
+        margin-top: 10px;
+    }
+}
+
+/* Definindo algumas variáveis CSS, ajuste conforme seu tema global */
+:root {
+    --primary-color: #00b89f; /* Verde-água para elementos primários */
+    --secondary-color: #6c757d; /* Cinza para elementos secundários */
+    --background-color: #f8f9fa; /* Fundo geral claro */
+    --card-background-color: #ffffff; /* Fundo de cartões/seções */
+    --text-color: #343a40; /* Cor de texto principal */
+    --text-color-light: #6c757d; /* Cor de texto mais clara */
+    --border-color: #dee2e6; /* Cor de borda geral */
+    --border-color-light: #eff1f3; /* Cor de borda mais clara */
+    --input-background-color: #ffffff; /* Fundo dos inputs */
+    --button-text-color: #ffffff; /* Cor do texto de botões primários */
+    --secondary-button-background-color: #f0f0f0; /* Fundo de botões secundários */
+    --secondary-button-text-color: #343a40; /* Texto de botões secundários */
+    --grid-header-background: #e9ecef; /* Fundo do cabeçalho do grid */
+    --grid-header-text-color: #495057; /* Texto do cabeçalho do grid */
+    --grid-row-even-background: #fdfdfe; /* Fundo de linhas pares no grid */
+    --grid-row-hover-background: #e9f7f6; /* Fundo ao passar o mouse na linha do grid */
+}

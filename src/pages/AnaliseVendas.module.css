@@ -1,0 +1,138 @@
+/* styles/AnaliseVendas.module.css */
+
+.container {
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9fafb; /* Cor de fundo principal clara */
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: #333; /* Cor de texto padrão */
+}
+
+.title {
+    font-size: 2.2rem;
+    color: #00b89f; /* Cor do seu tema */
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 10px;
+    background-color: #d1f2eb; /* Um tom mais claro para o título */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-top: 0; /* Garante que não haja margin-top residual do header */
+}
+
+.filterSection {
+    background-color: var(--card-background-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    flex: 1;
+}
+
+.inputGroup label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color-light);
+}
+
+.inputField {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: var(--input-background-color);
+    color: var(--text-color);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+}
+
+.inputField:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 184, 159, 0.2);
+    outline: none;
+}
+
+.noDataMessage {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-color-light);
+    font-style: italic;
+    background-color: var(--card-background-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+.chartsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 2rem;
+}
+
+.chartCard {
+    background-color: var(--card-background-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o título e o gráfico */
+}
+
+.chartTitle {
+    color: var(--primary-color-dark);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    text-align: center;
+    width: 100%; /* Para o border-bottom funcionar */
+    border-bottom: 1px solid var(--border-color-light);
+    padding-bottom: 0.8rem;
+}
+
+/* Variáveis CSS (Ajuste conforme seu tema global) */
+:root {
+    --primary-color: #00b89f;
+    --primary-color-light: #e6f7f5;
+    --primary-color-dark: #008f7b;
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --card-background-color: #ffffff;
+    --text-color: #343a40;
+    --text-color-light: #6c757d;
+    --border-color: #dee2e6;
+    --border-color-light: #eff1f3;
+    --input-background-color: #ffffff;
+    --button-text-color: #ffffff;
+    --secondary-button-background-color: #f0f0f0;
+    --secondary-button-text-color: #343a40;
+    --grid-header-background: #e9ecef;
+    --grid-header-text-color: #495057;
+    --grid-row-even-background: #fdfdfe;
+    --grid-row-hover-background: #e9f7f6;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .chartsGrid {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    }
+}
+
+@media (max-width: 600px) {
+    .filterSection {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

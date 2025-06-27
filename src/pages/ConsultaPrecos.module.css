@@ -1,0 +1,203 @@
+/* styles/ConsultaPrecos.module.css */
+
+.container {
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9fafb; /* Cor de fundo principal clara */
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: #333; /* Cor de texto padrão */
+}
+
+.title {
+    font-size: 2.2rem;
+    color: #00b89f; /* Cor do seu tema */
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 10px;
+    background-color: #d1f2eb; /* Um tom mais claro para o título */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-top: 0; /* Garante que não haja margin-top residual do header */
+}
+
+.searchSection {
+    background-color: var(--card-background-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative; /* Para posicionar os resultados */
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.inputGroup label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color-light);
+}
+
+.searchInputContainer {
+    position: relative;
+    width: 100%;
+}
+
+.inputField {
+    padding: 0.8rem 1rem 0.8rem 2.8rem; /* Aumenta padding left para o ícone */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1.1rem;
+    background-color: var(--input-background-color);
+    color: var(--text-color);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+}
+
+.inputField:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 184, 159, 0.2);
+    outline: none;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color-light);
+    font-size: 1.3rem;
+}
+
+.searchResults {
+    position: absolute;
+    width: calc(100% - 3rem); /* Ajusta à largura do container, considerando o padding */
+    max-height: 250px;
+    overflow-y: auto;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    top: calc(100% - 10px); /* Posiciona abaixo do input, com leve sobreposição */
+    left: 1.5rem; /* Alinha com o padding do searchSection */
+}
+
+.productList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.productList li {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border-color-light);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.productList li:last-child {
+    border-bottom: none;
+}
+
+.productList li:hover {
+    background-color: var(--grid-row-hover-background);
+}
+
+.productDetailsSection {
+    background-color: var(--card-background-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.sectionTitle {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    border-bottom: 2px solid var(--border-color-light);
+    padding-bottom: 0.5rem;
+}
+
+.detailsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem 1rem;
+}
+
+.detailItem {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0;
+}
+
+.detailItem strong {
+    color: var(--primary-color-dark);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.detailItem span {
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.priceItem strong {
+    font-size: 1.1rem;
+    color: #007bff; /* Azul para destaque do preço */
+}
+
+.priceValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #28a745; /* Verde para o valor do preço */
+}
+
+.lowStock {
+    color: #dc3545; /* Vermelho para estoque baixo */
+    font-weight: 600;
+}
+
+.noResultsMessage,
+.initialMessage {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-color-light);
+    font-style: italic;
+    background-color: var(--card-background-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Variáveis CSS (Ajuste conforme seu tema global) */
+:root {
+    --primary-color: #00b89f;
+    --primary-color-light: #e6f7f5;
+    --primary-color-dark: #008f7b;
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --card-background-color: #ffffff;
+    --text-color: #343a40;
+    --text-color-light: #6c757d;
+    --border-color: #dee2e6;
+    --border-color-light: #eff1f3;
+    --input-background-color: #ffffff;
+    --button-text-color: #ffffff;
+    --secondary-button-background-color: #f0f0f0;
+    --secondary-button-text-color: #343a40;
+    --grid-header-background: #e9ecef;
+    --grid-header-text-color: #495057;
+    --grid-row-even-background: #fdfdfe;
+    --grid-row-hover-background: #e9f7f6;
+}
+
+@media (max-width: 768px) {
+    .detailsGrid {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    }
+}

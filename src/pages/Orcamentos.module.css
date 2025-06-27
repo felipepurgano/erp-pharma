@@ -1,0 +1,624 @@
+/* styles/Orcamentos.module.css */
+
+.container {
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9fafb; /* Cor de fundo principal clara */
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: #333; /* Cor de texto padrão */
+}
+
+.title {
+    font-size: 2.2rem;
+    color: #00b89f; /* Cor do seu tema */
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 10px;
+    background-color: #d1f2eb; /* Um tom mais claro para o título */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-top: 0; /* Garante que não haja margin-top residual do header */
+}
+
+.sectionTitle {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    border-bottom: 2px solid var(--border-color-light);
+    padding-bottom: 0.5rem;
+}
+
+.sectionSubtitle {
+    color: var(--text-color);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+
+.formSection,
+.gridSection {
+    background-color: var(--card-background-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.formRow {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.inputGroup {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputGroup label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color-light);
+}
+
+.inputField,
+.textareaField {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: var(--input-background-color);
+    color: var(--text-color);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+}
+
+.inputField:focus,
+.textareaField:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 184, 159, 0.2);
+    outline: none;
+}
+
+.textareaField {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.inputGroupFullWidth {
+    width: 100%;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.selectItemContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.selectItemContainer .inputField {
+    flex-grow: 1;
+}
+
+.readOnlyInput {
+    background-color: var(--grid-row-even-background);
+    cursor: default;
+}
+
+.buttonSelect {
+    padding: 0.8rem 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.buttonSelect:hover {
+    background-color: #008f7b;
+}
+
+/* Ações do Formulário (Salvar/Cancelar) */
+.formActions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: flex-end;
+}
+
+.buttonSave,
+.buttonClear {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonSave {
+    background-color: var(--primary-color);
+    color: var(--button-text-color);
+}
+
+.buttonSave:hover {
+    background-color: #008f7b;
+    transform: translateY(-1px);
+}
+
+.buttonClear {
+    background-color: var(--secondary-button-background-color);
+    color: var(--secondary-button-text-color);
+    border: 1px solid var(--border-color);
+}
+
+.buttonClear:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-1px);
+}
+
+
+/* --- Grid de Registros (Principal) --- */
+.filterBar {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    align-items: flex-end; /* Alinha os inputs ao final */
+}
+
+.filterBar .inputGroup {
+    flex: 1;
+    min-width: 180px;
+}
+.filterBar .inputGroup label {
+    margin-bottom: 0.5rem;
+}
+
+
+.grid {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gridHeader {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr 1.5fr 1fr 0.8fr 100px; /* Colunas para o grid de Orçamentos */
+    background-color: var(--grid-header-background);
+    padding: 0.8rem 1rem;
+    font-weight: 600;
+    color: var(--grid-header-text-color);
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.gridRow {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr 1.5fr 1fr 0.8fr 100px; /* Mesma estrutura do header */
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border-color-light);
+    background-color: var(--card-background-color);
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.gridRow:nth-child(even) {
+    background-color: var(--grid-row-even-background);
+}
+
+.gridRow:hover {
+    background-color: var(--grid-row-hover-background);
+}
+
+.statusBadge {
+    padding: 0.3em 0.6em;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+}
+
+/* Cores dos status - Personalize conforme seu tema */
+.pendente { background-color: #ffc107; color: #333; } /* Amarelo */
+.aprovado { background-color: #28a745; } /* Verde */
+.rejeitado { background-color: #dc3545; } /* Vermelho */
+.concluído-vendido { background-color: #007bff; } /* Azul */
+.expirado { background-color: #6c757d; } /* Cinza */
+.cancelado { background-color: #343a40; } /* Cinza Escuro */
+
+
+.gridActions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.actionButton,
+.actionButtonRed {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0.4rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.actionButton {
+    color: var(--primary-color);
+}
+
+.actionButton:hover {
+    background-color: rgba(0, 184, 159, 0.1);
+    color: #008f7b;
+}
+
+.actionButtonRed {
+    color: #e74c3c;
+}
+
+.actionButtonRed:hover {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: #c0392b;
+}
+
+.noItemsMessage {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-color-light);
+    font-style: italic;
+}
+
+
+/* --- Seção de Itens do Orçamento no Formulário --- */
+.itemsSection {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color-light);
+}
+
+.addItemForm {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.addItemForm .inputGroup {
+    flex: 1;
+    min-width: 150px;
+}
+
+.buttonAddItem {
+    padding: 0.8rem 1.2rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.buttonAddItem:hover {
+    background-color: #008f7b;
+}
+
+.itemsGrid {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.itemsGridHeader {
+    display: grid;
+    grid-template-columns: 2.5fr 0.5fr 0.8fr 0.8fr 1fr 60px; /* Colunas para itens do orçamento */
+    background-color: var(--grid-header-background);
+    padding: 0.6rem 0.8rem;
+    font-weight: 600;
+    color: var(--grid-header-text-color);
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.itemsGridRow {
+    display: grid;
+    grid-template-columns: 2.5fr 0.5fr 0.8fr 0.8fr 1fr 60px; /* Mesma estrutura do header de itens */
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid var(--border-color-light);
+    background-color: var(--card-background-color);
+    align-items: center;
+    font-size: 0.9em;
+}
+
+.itemsGridRow:nth-child(even) {
+    background-color: var(--grid-row-even-background);
+}
+
+.itemsGridRow .gridActions {
+    justify-content: flex-end;
+}
+
+.itemsGridFooter {
+    padding: 0.8rem;
+    background-color: var(--grid-header-background);
+    border-top: 1px solid var(--border-color);
+    text-align: right;
+    font-weight: 600;
+    color: var(--grid-header-text-color);
+}
+
+.totalizers span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+
+/* --- Modal Styles (Reutilizado dos outros módulos) --- */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background-color: var(--card-background-color);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modalTitle {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.modalSearchBar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.modalSearchBar .inputField {
+    flex-grow: 1;
+    padding-right: 2.5rem;
+}
+
+.modalSearchBar .searchIcon {
+    position: absolute;
+    right: 1rem;
+    color: var(--text-color-light);
+    font-size: 1.2rem;
+}
+
+.modalGrid {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.modalGridHeader {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 100px; /* Add Preço Venda column */
+    background-color: var(--grid-header-background);
+    padding: 0.8rem 1rem;
+    font-weight: 600;
+    color: var(--grid-header-text-color);
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.modalGridRow {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 100px; /* Add Preço Venda column */
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border-color-light);
+    background-color: var(--card-background-color);
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.modalGridRow:nth-child(even) {
+    background-color: var(--grid-row-even-background);
+}
+
+.modalGridRow:hover {
+    background-color: var(--grid-row-hover-background);
+}
+
+.modalActionButton {
+    padding: 0.6rem 1rem;
+    background-color: var(--primary-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.modalActionButton:hover {
+    background-color: #008f7b;
+}
+
+.modalCloseButton {
+    padding: 0.8rem 1.5rem;
+    background-color: var(--secondary-button-background-color);
+    color: var(--secondary-button-text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+.modalCloseButton:hover {
+    background-color: #e0e0e0;
+}
+
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .gridHeader,
+    .gridRow {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 80px; /* Ajuste para grids menores */
+        font-size: 0.8rem;
+    }
+
+    .itemsGridHeader,
+    .itemsGridRow {
+        grid-template-columns: 1.5fr 0.5fr 0.8fr 0.8fr 1fr 50px; /* Ajuste para itens do orçamento */
+        font-size: 0.8em;
+    }
+
+    .modalGridHeader,
+    .modalGridRow {
+        grid-template-columns: 1.5fr 1fr 0.8fr 0.8fr 80px; /* Ajuste para o modal de produto */
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 768px) {
+    .formRow {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .inputGroup {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .selectItemContainer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .selectItemContainer .buttonSelect {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .filterBar,
+    .addItemForm {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .filterBar .inputGroup,
+    .addItemForm .inputGroup {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .buttonAddItem {
+        width: 100%;
+    }
+
+    .gridHeader,
+    .gridRow,
+    .itemsGridHeader,
+    .itemsGridRow,
+    .modalGridHeader,
+    .modalGridRow {
+        grid-template-columns: 1fr; /* Colunas empilhadas em mobile */
+        gap: 0.5rem;
+        text-align: center;
+        padding: 0.8rem;
+    }
+
+    .gridHeader span,
+    .gridRow span,
+    .itemsGridHeader span,
+    .itemsGridRow span,
+    .modalGridHeader span,
+    .modalGridRow span {
+        display: block;
+    }
+
+    .gridRow span:first-child,
+    .itemsGridRow span:first-child,
+    .modalGridRow span:first-child {
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .gridActions {
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    .totalizers {
+        text-align: center;
+    }
+}
+
+
+/* Variáveis CSS (Ajuste conforme seu tema global) */
+:root {
+    --primary-color: #00b89f;
+    --primary-color-light: #e6f7f5; /* Um tom mais claro do primário para destaques */
+    --primary-color-dark: #008f7b; /* Um tom mais escuro do primário */
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --card-background-color: #ffffff;
+    --text-color: #343a40;
+    --text-color-light: #6c757d;
+    --border-color: #dee2e6;
+    --border-color-light: #eff1f3;
+    --input-background-color: #ffffff;
+    --button-text-color: #ffffff;
+    --secondary-button-background-color: #f0f0f0;
+    --secondary-button-text-color: #343a40;
+    --grid-header-background: #e9ecef;
+    --grid-header-text-color: #495057;
+    --grid-row-even-background: #fdfdfe;
+    --grid-row-hover-background: #e9f7f6;
+}

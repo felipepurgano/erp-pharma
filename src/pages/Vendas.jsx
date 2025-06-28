@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Sidebar from "@/layouts/Sidebar";
-import styles from "@/pages/Vendas.module.css";
+import styles from "@/styles/pages/Vendas.module.css";
 import { FiTrash, FiShoppingCart, FiUsers } from "react-icons/fi";
 import { produtosMock, clientesMock } from "@/utils/mocks";
 

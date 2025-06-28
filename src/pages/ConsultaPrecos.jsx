@@ -1,7 +1,7 @@
 // pages/ConsultaPrecos.jsx
 import { useState, useEffect } from "react";
 import Sidebar from "@/layouts/Sidebar";
-import styles from "@/pages/ConsultaPrecos.module.css";
+import styles from "@/styles/pages/ConsultaPrecos.module.css";
 import { FiSearch } from "react-icons/fi";
 import { produtosMock } from "@/utils/mocks";
 

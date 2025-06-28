@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Sidebar from "@/layouts/Sidebar";
-import styles from "@/pages/Clientes.module.css"; // CSS específico para clientes
+import styles from "@/styles/pages/Clientes.module.css"; // CSS específico para clientes
 import { FiSave, FiXCircle, FiSearch, FiEdit, FiTrash } from "react-icons/fi";
 import { clientesMock } from "@/utils/mocks"; // Importa o mock de clientes
 

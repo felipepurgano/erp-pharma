@@ -1,7 +1,7 @@
 // pages/AreaFiscal.jsx
 import { useState, useEffect } from "react";
 import Sidebar from "@/layouts/Sidebar";
-import styles from "@/pages/AreaFiscal.module.css";
+import styles from "@/styles/pages/AreaFiscal.module.css";
 import { FiPlus, FiEdit, FiTrash, FiSearch } from "react-icons/fi";
 import {
     documentosFiscaisMock,

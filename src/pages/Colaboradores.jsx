@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Sidebar from "@/layouts/Sidebar";
-import styles from "@/pages/Colaboradores.module.css"; // CSS específico para colaboradores
+import styles from "@/styles/pages/Colaboradores.module.css"; // CSS específico para colaboradores
 import { FiSave, FiXCircle, FiSearch, FiEdit, FiTrash } from "react-icons/fi";
 import { colaboradoresMock } from "@/utils/mocks"; // Importa o mock de colaboradores
 

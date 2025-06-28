@@ -1,7 +1,7 @@
 // pages/Orcamentos.jsx
 import { useState, useEffect } from "react";
 import Sidebar from "@/layouts/Sidebar";
-import styles from "@/pages/Orcamentos.module.css";
+import styles from "@/styles/pages//Orcamentos.module.css";
 import { FiPlus, FiEdit, FiTrash, FiSearch, FiXCircle } from "react-icons/fi";
 import {
     produtosMock,

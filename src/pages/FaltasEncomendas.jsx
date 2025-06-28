@@ -1,7 +1,7 @@
 // pages/FaltasEncomendas.js
 import { useState, useEffect } from "react";
 import Sidebar from "@/layouts/Sidebar";
-import styles from "@/pages/FaltasEncomendas.module.css"; // Vamos criar este CSS
+import styles from "@/styles/pages/FaltasEncomendas.module.css"; // Vamos criar este CSS
 import { FiPlus, FiEdit, FiTrash, FiSearch, FiCheckSquare, FiXSquare } from "react-icons/fi";
 import { produtosMock, clientesMock, faltasEncomendasMock, adicionarFaltaEncomendaMock, atualizarFaltaEncomendaMock, removerFaltaEncomendaMock } from "@/utils/mocks";
 

@@ -1,0 +1,258 @@
+/* --- Variáveis CSS (Ajustadas para as cores anteriores) --- */
+:root {
+  --sidebar-width: 240px; /* Largura padrão da sidebar */
+  --sidebar-collapsed-width: 80px; /* Largura da sidebar retraída */
+  --sidebar-bg-color: #003366; /* Cor de fundo da sidebar (azul escuro original) */
+  --sidebar-text-color: #e0e0e0; /* Cor do texto (cinza claro original) */
+  --sidebar-hover-color: #0055a5; /* Cor de hover para itens (azul mais claro original) */
+  --sidebar-active-color: #007bff; /* Cor do item ativo (azul forte original) */
+  --logo-color: #00c2a5; /* Cor específica do texto do logo (verde-água original) */
+  --content-bg-color: #f5f5f5; /* Cor de fundo da área do conteúdo (cinza claro original) */
+  --transition-speed: 0.3s; /* Velocidade da transição */
+}
+
+/* --- Container principal --- */
+.container {
+  display: flex; /* Mantém o display flex original */
+  height: 100vh;
+  /* Transição na largura da sidebar será feita no .sidebar e ajuste de flex no .content */
+}
+
+/* --- Sidebar base e retraída --- */
+.sidebar {
+  width: var(--sidebar-width); /* Largura padrão */
+  background-color: var(--sidebar-bg-color);
+  color: var(--sidebar-text-color);
+  padding: 1rem; /* Padding original */
+  height: 100vh; /* Ocupa 100% da altura da viewport */
+  overflow-y: auto; /* Permite scroll se o conteúdo for muito grande */
+  position: relative; /* ESSENCIAL para posicionamento absoluto do botão */
+  transition: width var(--transition-speed) ease-in-out, padding var(--transition-speed) ease-in-out;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura */
+  flex-shrink: 0; /* Impede que a sidebar encolha mais do que o necessário */
+  display: flex; /* Define como flex container para organizar itens e botão */
+  flex-direction: column; /* Itens empilhados verticalmente */
+}
+
+/* Estilos da Sidebar quando retraída */
+.collapsedSidebar {
+  width: var(--sidebar-collapsed-width);
+  padding: 1rem 0.5rem; /* Ajusta o padding para o modo colapsado */
+}
+
+/* --- Logo e Link do Logo --- */
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--logo-color); /* Cor original do logo */
+  margin-bottom: 2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  display: flex; /* Para alinhar ícone e texto */
+  align-items: center;
+  justify-content: flex-start; /* Alinha à esquerda por padrão */
+  transition: all var(--transition-speed); /* Para transição do conteúdo */
+}
+
+.logoLink {
+  color: var(--sidebar-text-color); /* Cor do link (texto) */
+  text-decoration: none;
+  display: flex; /* Para o ícone e texto ficarem lado a lado */
+  align-items: center;
+  width: 100%; /* Ocupa toda a largura do logo */
+  justify-content: flex-start; /* Por padrão, alinha à esquerda */
+}
+
+.logoText { /* Novo seletor para o texto do logo */
+    transition: opacity var(--transition-speed) ease-in-out, width var(--transition-speed) ease-in-out;
+}
+
+/* Ajustes para o logo no modo colapsado */
+.collapsedSidebar .logo {
+    margin-bottom: 1rem; /* Menos margin-bottom no modo colapsado */
+    justify-content: center; /* Centraliza a caixa do logo */
+}
+.collapsedSidebar .logoLink { /* NOVO: Centraliza o conteúdo do link (o ícone) */
+    justify-content: center;
+}
+.collapsedSidebar .logoLink svg {
+    margin-right: 0 !important; /* Remove o margin do ícone */
+}
+.collapsedSidebar .logoText { /* Oculta apenas o texto do logo */
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    pointer-events: none; /* Desabilita interações de eventos */
+}
+
+
+/* --- Navegação --- */
+nav {
+  flex-grow: 1; /* Ocupa o espaço restante antes do botão de colapsar */
+}
+
+.section {
+  margin-bottom: 1rem; /* Margin original */
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Mantém space-between */
+  cursor: pointer;
+  padding: 0.5rem; /* Padding original */
+  transition: background 0.2s;
+  border-radius: 0.5rem; /* Border-radius original */
+  font-weight: 600; /* Peso da fonte original */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.sectionHeader:hover {
+  background-color: var(--sidebar-hover-color); /* Cor de hover original */
+}
+
+.sectionIcon {
+  margin-right: 0.5rem; /* Margin original */
+  font-size: 1.3rem; /* Tamanho do ícone (ajustado para visualização no modo colapsado) */
+  flex-shrink: 0; /* Impede que o ícone encolha */
+  transition: margin-right var(--transition-speed);
+}
+
+.sectionTitleText { /* Novo seletor para o texto do título da seção */
+  flex: 1; /* Ocupa o espaço restante */
+  transition: opacity var(--transition-speed) ease-in-out, width var(--transition-speed) ease-in-out;
+}
+
+/* Ocultar texto e setas quando a sidebar está colapsada */
+.collapsedSidebar .sectionHeader {
+    justify-content: center; /* Centraliza o ícone */
+    padding: 0.5rem 0; /* Ajusta padding para centralizar */
+}
+.collapsedSidebar .sectionIcon {
+    margin-right: 0; /* Remove margin do ícone */
+}
+.collapsedSidebar .sectionTitleText, /* Oculta apenas o texto */
+.collapsedSidebar .sectionHeader svg:last-child { /* As setas FiChevronDown/Right */
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition: opacity var(--transition-speed) ease-in-out, width var(--transition-speed) ease-in-out;
+}
+
+
+/* --- Menu de itens (dropdown) --- */
+.menu {
+  list-style: none;
+  padding-left: 1rem; /* Padding original */
+  margin: 0;
+  max-height: 0; /* Inicia fechado */
+  overflow: hidden;
+  transition: max-height var(--transition-speed) ease-out; /* Transição para abertura/fechamento */
+}
+
+.dropdownOpen {
+  max-height: 1000px; /* Altura máxima quando aberto (ajuste se necessário) */
+  transition: max-height var(--transition-speed) ease-in;
+}
+
+.menuItem {
+  cursor: pointer;
+  padding: 0.5rem 0.75rem; /* Padding original */
+  border-radius: 0.375rem; /* Border-radius original */
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  color: var(--sidebar-text-color); /* Cor do texto original */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.menuItem:hover {
+  background-color: var(--sidebar-hover-color); /* Cor de hover original */
+}
+
+.activeItem {
+  background-color: var(--sidebar-active-color); /* Cor de item ativo original */
+}
+
+.icon {
+  margin-right: 0.5rem; /* Margin original */
+  font-size: 1.1rem; /* Tamanho do ícone (ajustado para visualização no modo colapsado) */
+  flex-shrink: 0; /* Impede que o ícone encolha */
+  transition: margin-right var(--transition-speed);
+}
+
+.menuItemText { /* Novo seletor para o texto do item de menu */
+    transition: opacity var(--transition-speed) ease-in-out, width var(--transition-speed) ease-in-out;
+}
+
+/* Ocultar texto dos itens do menu quando colapsado */
+.collapsedSidebar .menuItem {
+    justify-content: center; /* Centraliza o ícone */
+    padding: 0.5rem 0; /* Ajusta padding para centralizar */
+    margin-left: 0; /* Remove indentação */
+}
+.collapsedSidebar .icon {
+    margin-right: 0; /* Remove margin do ícone */
+}
+.collapsedSidebar .menuItemText { /* Oculta apenas o texto */
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+
+/* --- Estilos para o conteúdo principal --- */
+.content {
+  flex: 1; /* Ocupa o espaço restante */
+  padding: 2rem; /* Padding original */
+  background-color: var(--content-bg-color); /* Cor de fundo original */
+  overflow-y: auto;
+  /* Transição na largura do content é implicita pelo ajuste da sidebar,
+     ou poderia ser ajustada com margin-left se a sidebar fosse fixa */
+}
+
+
+/* --- Botão de colapsar --- */
+.collapseButtonContainer {
+  /* position: absolute garante que ele fique no final da área visível */
+  position: absolute;
+  bottom: 0; /* Fixa na parte inferior */
+  left: 0; /* Alinha à esquerda */
+  width: 100%; /* Ocupa toda a largura da sidebar */
+  padding: 15px 0; /* Adiciona padding vertical */
+  background-color: var(--sidebar-bg-color); /* Garante que o fundo cubra qualquer scroll */
+  border-top: 1px solid rgba(0, 0, 0, 0.2); /* Linha divisória sutil */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: auto; REMOVIDO pois não é necessário com position: absolute */
+  z-index: 10; /* Garante que ele fique acima do conteúdo que pode scrollar */
+}
+
+.collapseButton {
+  background: none;
+  border: none;
+  color: var(--sidebar-text-color);
+  cursor: pointer;
+  font-size: 1.8rem;
+  padding: 5px 10px;
+  border-radius: 50%;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collapseButton:hover {
+  background-color: var(--sidebar-hover-color);
+  transform: scale(1.1);
+}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Sidebar from "@/layouts/Sidebar";
-import styles from "@/pages/Caixa.module.css";
+import styles from "@/styles/pages/Caixa.module.css";
 import { FiTrash, FiShoppingCart, FiUsers, FiXCircle, FiUpload, FiPrinter, FiPlus } from "react-icons/fi"; // FiUpload para o novo ícone
 import { produtosMock, clientesMock } from "@/utils/mocks"; // Importando clientesMock
 

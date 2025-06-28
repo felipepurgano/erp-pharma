@@ -1,7 +1,7 @@
 // pages/Fornecedores.js
 import { useState, useEffect } from "react";
 import Sidebar from "@/layouts/Sidebar";
-import styles from "@/pages/Fornecedores.module.css"; // Vamos criar este CSS
+import styles from "@/styles/pages/Fornecedores.module.css"; // Vamos criar este CSS
 import { FiEdit, FiTrash, FiSearch, FiPlus } from "react-icons/fi";
 import { fornecedoresMock } from "@/utils/mocks"; // Importar o mock de fornecedores
 

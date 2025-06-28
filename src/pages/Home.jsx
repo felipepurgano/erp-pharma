@@ -1,6 +1,6 @@
 // src/pages/Home.jsx
 import React from "react";
-import styles from "../styles/App.module.css";
+import styles from "@/styles/App.module.css";
 import { useNavigate } from "react-router-dom"; // Ou 'next/router' se for Next.js puro
 import {
     FiShoppingCart,

@@ -1,7 +1,7 @@
 // pages/Financeiro.jsx
 import { useState, useEffect } from "react";
 import Sidebar from "@/layouts/Sidebar";
-import styles from "@/pages/Financeiro.module.css";
+import styles from "@/styles/pages/Financeiro.module.css";
 import { FiPlus, FiEdit, FiTrash, FiSearch, FiDollarSign, FiArrowUpCircle, FiArrowDownCircle } from "react-icons/fi";
 import {
     financeiroMock,

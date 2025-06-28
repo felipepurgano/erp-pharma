@@ -1,7 +1,7 @@
 // pages/SNGPC.jsx
 import { useState, useEffect } from "react";
 import Sidebar from "@/layouts/Sidebar";
-import styles from "@/pages/SNGPC.module.css";
+import styles from "@/styles/pages/SNGPC.module.css";
 import { FiPlus, FiEdit, FiTrash, FiSearch } from "react-icons/fi";
 import {
     sngpcLancamentosMock,

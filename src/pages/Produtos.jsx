@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Sidebar from "@/layouts/Sidebar";
-import styles from "@/pages/Produtos.module.css"; // CSS específico para produtos
+import styles from "@/styles/pages/Produtos.module.css"; // CSS específico para produtos
 import { FiSave, FiXCircle, FiSearch, FiEdit, FiTrash } from "react-icons/fi";
 import { produtosMock } from "@/utils/mocks"; // Importa o mock de produtos
 

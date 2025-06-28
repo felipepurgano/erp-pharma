@@ -1,7 +1,7 @@
 // pages/Convenios.js
 import { useState, useEffect } from "react";
 import Sidebar from "@/layouts/Sidebar";
-import styles from "@/pages/Convenios.module.css"; // Vamos criar este CSS
+import styles from "@/styles/pages/Convenios.module.css"; // Vamos criar este CSS
 import { FiEdit, FiTrash, FiSearch, FiPlus } from "react-icons/fi";
 import { conveniosMock } from "@/utils/mocks"; // Importar o mock de convênios
 

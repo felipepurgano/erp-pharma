@@ -1,7 +1,7 @@
 // pages/AnaliseVendas.jsx
 import { useState, useEffect, useMemo } from "react";
 import Sidebar from "@/layouts/Sidebar";
-import styles from "@/pages/AnaliseVendas.module.css";
+import styles from "@/styles/pages/AnaliseVendas.module.css";
 import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
     BarChart, Bar, PieChart, Pie, Cell

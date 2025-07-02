@@ -28,6 +28,7 @@ const layout = [
         items: [
             { name: "Vendas", icon: <FiShoppingCart size={36} /> },
             { name: "SNGPC", icon: <FiClipboard size={36} /> },
+            { name: "SPED", icon: <FiClipboard size={36} /> },
             { name: "Área fiscal", icon: <FiFileText size={36} /> },
             { name: "Consulta de preços", icon: <FiDollarSign size={36} /> },
             { name: "Caixa", icon: <FiDollarSign size={36} /> },
@@ -76,6 +77,9 @@ export default function Home() {
                 break;
             case "SNGPC":
                 navigate("/sngpc");
+                break;
+            case "SPED":
+                navigate("/sped");
                 break;
             case "Área fiscal":
                 navigate("/area-fiscal");

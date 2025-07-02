@@ -14,8 +14,17 @@ import FaltasEncomendas from "./pages/FaltasEncomendas";
 import Orcamentos from "./pages/Orcamentos";
 import Financeiro from "./pages/Financeiro";
 import SNGPC from "./pages/SNGPC";
+import SPED from "./pages/Sped";
 import AreaFiscal from "./pages/AreaFiscal";
 import ConsultaPrecos from "./pages/ConsultaPrecos";
+import AnaliseProdutos from "./pages/AnaliseProdutos";
+import Entregas from "./pages/Entregas";
+import AnaliseClientes from "./pages/AnaliseClientes";
+import FechamentoMensal from "./pages/FechamentoMensal";
+import ComissaoVendedores from "./pages/ComissaoVendedores";
+import Promocoes from "./pages/Promocoes";
+import ResumoContas from "./pages/ResumoContas";
+import LogAuditoria from "./pages/LogAuditoria";
 
 export default function AppRouter() {
   return (
@@ -34,8 +43,17 @@ export default function AppRouter() {
       <Route path="/analise-vendas" element={<AnaliseVendas />} />
       <Route path="/produtos" element={<Produtos />} />
       <Route path="/sngpc" element={<SNGPC />} />
+      <Route path="/sped" element={<SPED />} />
       <Route path="/area-fiscal" element={<AreaFiscal />} />
       <Route path="/consulta-precos" element={<ConsultaPrecos />} />
+      <Route path="/analise-produtos" element={<AnaliseProdutos />} />
+      <Route path="/entregas" element={<Entregas />} />
+      <Route path="/analise-clientes" element={<AnaliseClientes />} />
+      <Route path="/fechamento-mensal" element={<FechamentoMensal />} />
+      <Route path="/comissao-vendedores" element={<ComissaoVendedores />} />
+      <Route path="/promocoes" element={<Promocoes />} />
+      <Route path="/resumo-contas" element={<ResumoContas />} />
+      <Route path="/log-auditoria" element={<LogAuditoria />} />
     </Routes>
   );
 }

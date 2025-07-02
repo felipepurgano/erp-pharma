@@ -1,0 +1,287 @@
+/* --- Variáveis CSS (Conforme AnaliseVendas.module.css) --- */
+:root {
+  --primary-color: #00b89f;
+  --primary-color-light: #e6f7f5;
+  --primary-color-dark: #008f7b;
+  --secondary-color: #6c757d;
+  --background-color: #f8f9fa; /* Nova cor de fundo geral */
+  --card-background-color: #ffffff;
+  --text-color: #343a40;
+  --text-color-light: #6c757d;
+  --border-color: #dee2e6;
+  --border-color-light: #eff1f3;
+  --input-background-color: #ffffff;
+  --button-text-color: #ffffff;
+  --secondary-button-background-color: #f0f0f0;
+  --secondary-button-text-color: #343a40;
+  --grid-header-background: #e9ecef;
+  --grid-header-text-color: #495057;
+  --grid-row-even-background: #fdfdfe;
+  --grid-row-hover-background: #e9f7f6;
+}
+
+/* Base da página (equivale a .container de AnaliseVendas) */
+.productAnalysisPage {
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color); /* Usando a nova variável */
+  min-height: 100vh;
+  box-sizing: border-box;
+  color: var(--text-color);
+}
+
+/* Título da página (equivale a .title de AnaliseVendas) */
+.pageTitle {
+  font-size: 2.2rem;
+  color: var(--primary-color); /* Usando a nova variável */
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 10px;
+  background-color: var(--primary-color-light); /* Um tom mais claro do seu tema */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-top: 0;
+}
+
+/* Seção de Filtros (equivale a .filterSection de AnaliseVendas) */
+.filtersSection {
+  background-color: var(--card-background-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center; /* Mantém o alinhamento para o flex-wrap */
+  align-items: flex-end; /* Alinha os campos na base, se necessário */
+}
+
+.filterGroup { /* Equivalente a .inputGroup de AnaliseVendas */
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  flex: 1; /* Permite que o grupo cresça */
+}
+
+.filterGroup label { /* Equivalente a .inputGroup label */
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-color-light); /* Usando nova variável */
+}
+
+/* Campos de Input, Select e DatePicker (equivale a .inputField de AnaliseVendas) */
+.datePickerInput,
+.selectInput,
+.textInput {
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border-color); /* Usando nova variável */
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: var(--input-background-color);
+  color: var(--text-color);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+}
+
+.datePickerInput:focus,
+.selectInput:focus,
+.textInput:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 184, 159, 0.2); /* Cor de sombra do AnaliseVendas */
+  outline: none;
+}
+
+/* Estilo para o select personalizado */
+.selectInput {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23343a40' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); /* Nova cor da seta */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 18px;
+  padding-right: 2.5rem;
+}
+
+.clearFiltersButton {
+  background-color: var(--secondary-color); /* Cor secundária para o botão limpar */
+  color: var(--button-text-color); /* Cor do texto do botão */
+  padding: 0.8rem 1.5rem; /* Ajustado padding */
+  border: none;
+  border-radius: 5px; /* Ajustado border-radius */
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  margin-left: auto; /* Empurra o botão para a direita */
+  align-self: flex-end; /* Alinha o botão ao final do filterSection */
+}
+
+.clearFiltersButton:hover {
+  background-color: #5a6268; /* Tom mais escuro do cinza */
+}
+
+
+/* --- Cards de Resumo --- */
+.summaryCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card { /* Estilo de card geral */
+  background-color: var(--card-background-color);
+  padding: 1.5rem;
+  border-radius: 8px; /* Ajustado border-radius */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.card h3 {
+  color: var(--primary-color-dark); /* Cor mais escura para títulos de cards */
+  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
+}
+
+.card p {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-color); /* Cor principal para os números */
+}
+
+/* --- Seção de Gráficos (equivale a .chartsGrid, .chartCard de AnaliseVendas) --- */
+.chartsSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); /* Min width de 450px */
+  gap: 2rem; /* Espaçamento de 2rem */
+  margin-bottom: 2rem;
+}
+
+.chartCard { /* Estilo de card de gráfico */
+  background-color: var(--card-background-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza o título e o gráfico */
+  justify-content: center; /* Centraliza verticalmente o conteúdo */
+  min-height: 300px; /* Altura mínima para os gráficos */
+}
+
+.chartTitle { /* Estilo do título do gráfico */
+  color: var(--primary-color-dark);
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px solid var(--border-color-light);
+  padding-bottom: 0.8rem;
+}
+
+.chartPlaceholder {
+    width: 100%;
+    height: 100%; /* Ocupa o restante do espaço no card */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color-light); /* Cor do texto do placeholder */
+    font-style: italic;
+    background-color: #f8f8f8; /* Fundo leve para o placeholder */
+    border: 1px dashed var(--border-color);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    min-height: 200px;
+    box-sizing: border-box;
+}
+
+.chartPlaceholder ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+    text-align: left;
+    width: 80%;
+}
+
+.chartPlaceholder li {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+/* --- Tabela de Detalhes --- */
+.detailTableSection {
+  background-color: var(--card-background-color);
+  padding: 1.5rem;
+  border-radius: 8px; /* Ajustado border-radius */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+.detailTableSection h2 {
+  color: var(--primary-color-dark);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.tableContainer {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.productTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.productTable th,
+.productTable td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.productTable th { /* Equivalente a --grid-header-background */
+  background-color: var(--grid-header-background);
+  color: var(--grid-header-text-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.productTable tbody tr:nth-child(even) { /* Equivalente a --grid-row-even-background */
+  background-color: var(--grid-row-even-background);
+}
+
+.productTable tbody tr:hover { /* Equivalente a --grid-row-hover-background */
+  background-color: var(--grid-row-hover-background);
+}
+
+.productTable td {
+  color: var(--text-color);
+}
+
+.productTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+  .chartsSection { /* Corrigido de chartsGrid para chartsSection */
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .filtersSection {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .clearFiltersButton {
+    margin-left: 0;
+    width: 100%;
+  }
+}

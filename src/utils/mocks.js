@@ -173,6 +173,163 @@ export let produtosMock = [
     },
 ];
 
+export const mockPromotions = [
+    {
+        id: 'PRM001',
+        name: 'Desconto de Verão 10%',
+        description: '10% de desconto em todos os produtos',
+        type: 'Porcentagem',
+        value: 10, // 10%
+        applicability: 'Todos os Produtos',
+        startDate: '2024-07-01',
+        endDate: '2024-07-31',
+        status: 'Ativa'
+    },
+    {
+        id: 'PRM002',
+        name: 'Frete Grátis acima de R$150',
+        description: 'Frete grátis para compras acima de 150 reais',
+        type: 'Frete Grátis',
+        value: 0, // N/A, valor significa frete grátis
+        applicability: 'Pedido > R$150',
+        startDate: '2024-06-15',
+        endDate: '2024-08-31',
+        status: 'Ativa'
+    },
+    {
+        id: 'PRM003',
+        name: 'Leve 2 Pague 1 - Analgésicos',
+        description: 'Compre 2 analgésicos e pague apenas 1',
+        type: 'Compre X Leve Y',
+        value: '2=1', // Representação simples
+        applicability: 'Categoria: Analgésicos',
+        startDate: '2024-05-01',
+        endDate: '2024-06-30', // Esta promoção já expirou
+        status: 'Inativa' 
+    },
+    {
+        id: 'PRM004',
+        name: 'Desconto R$20 primeira compra',
+        description: 'R$20 de desconto para novos clientes',
+        type: 'Valor Fixo',
+        value: 20,
+        applicability: 'Novos Clientes',
+        startDate: '2024-07-01',
+        endDate: '2025-12-31',
+        status: 'Ativa'
+    },
+    {
+        id: 'PRM005',
+        name: '5% em Vitaminas',
+        description: '5% de desconto em todas as vitaminas',
+        type: 'Porcentagem',
+        value: 5,
+        applicability: 'Categoria: Vitaminas',
+        startDate: '2024-07-10', // Data futura
+        endDate: '2024-07-25',
+        status: 'Ativa' // Poderia ser 'Agendada' ou 'Futura'
+    },
+    {
+        id: 'PRM006',
+        name: 'Combo Família Medicamentos',
+        description: '15% de desconto na compra de 3 ou mais itens',
+        type: 'Porcentagem',
+        value: 15,
+        applicability: '3+ Itens no Carrinho',
+        startDate: '2024-07-01',
+        endDate: '2024-09-30',
+        status: 'Ativa'
+    },
+];
+
+export const mockRevenues = [
+    { id: 'REC001', date: '2024-06-01', description: 'Venda de Produtos - Loja', category: 'Vendas', amount: 1500.00, status: 'Recebido' },
+    { id: 'REC002', date: '2024-06-05', description: 'Serviços Farmacêuticos', category: 'Serviços', amount: 300.00, status: 'Recebido' },
+    { id: 'REC003', date: '2024-06-10', description: 'Venda de Produtos - Online', category: 'Vendas', amount: 850.00, status: 'Recebido' },
+    { id: 'REC004', date: '2024-06-15', description: 'Convênio Farmácia Total - Jun', category: 'Convênios', amount: 2500.00, status: 'Pendente' }, // Pending
+    { id: 'REC005', date: '2024-06-20', description: 'Venda de Produtos - Loja', category: 'Vendas', amount: 1200.00, status: 'Recebido' },
+    { id: 'REC006', date: '2024-06-25', description: 'Serviços de Vacinação', category: 'Serviços', amount: 450.00, status: 'Recebido' },
+    { id: 'REC007', date: '2024-07-01', description: 'Venda de Produtos - Online', category: 'Vendas', amount: 980.00, status: 'Recebido' },
+    { id: 'REC008', date: '2024-07-03', description: 'Convênio SaudeMais - Jun', category: 'Convênios', amount: 1800.00, status: 'Recebido' },
+    { id: 'REC009', date: '2024-07-05', description: 'Venda de Produtos - Loja', category: 'Vendas', amount: 1600.00, status: 'Recebido' },
+    { id: 'REC010', date: '2024-07-10', description: 'Serviços de Aferição de Pressão', category: 'Serviços', amount: 150.00, status: 'Recebido' },
+    { id: 'REC011', date: '2024-07-15', description: 'Venda de Produtos - Online', category: 'Vendas', amount: 700.00, status: 'Pendente' }, // Pending
+    { id: 'REC012', date: '2024-07-20', description: 'Convênio BemEstar - Jul', category: 'Convênios', amount: 2000.00, status: 'Pendente' }, // Pending
+    { id: 'REC013', date: '2024-05-10', description: 'Venda de Produtos - Loja', category: 'Vendas', amount: 1100.00, status: 'Recebido' },
+];
+
+export const mockExpenses = [
+    { id: 'EXP001', date: '2024-06-02', description: 'Aluguel - Junho', category: 'Despesas Fixas', amount: 3500.00, status: 'Pago' },
+    { id: 'EXP002', date: '2024-06-05', description: 'Folha de Pagamento - Junho', category: 'Despesas Fixas', amount: 7000.00, status: 'Pago' },
+    { id: 'EXP003', date: '2024-06-07', description: 'Compra de Estoque - Fornecedor A', category: 'Compras', amount: 4200.00, status: 'Pago' },
+    { id: 'EXP004', date: '2024-06-12', description: 'Conta de Luz - Junho', category: 'Contas de Consumo', amount: 450.00, status: 'Pago' },
+    { id: 'EXP005', date: '2024-06-18', description: 'Manutenção de Equipamentos', category: 'Manutenção', amount: 600.00, status: 'Pendente' }, // Pending
+    { id: 'EXP006', date: '2024-06-22', description: 'Marketing Digital - Campanha Jun', category: 'Marketing', amount: 800.00, status: 'Pago' },
+    { id: 'EXP007', date: '2024-06-28', description: 'Compra de Estoque - Fornecedor B', category: 'Compras', amount: 3100.00, status: 'Pago' },
+    { id: 'EXP008', date: '2024-07-01', description: 'Aluguel - Julho', category: 'Despesas Fixas', amount: 3500.00, status: 'Pendente' }, // Pending
+    { id: 'EXP009', date: '2024-07-05', description: 'Folha de Pagamento - Julho', category: 'Despesas Fixas', amount: 7200.00, status: 'Pendente' }, // Pending
+    { id: 'EXP010', date: '2024-07-10', description: 'Compra de Estoque - Fornecedor C', category: 'Compras', amount: 5000.00, status: 'Pago' },
+    { id: 'EXP011', date: '2024-07-15', description: 'Conta de Água - Julho', category: 'Contas de Consumo', amount: 200.00, status: 'Pendente' }, // Pending
+    { id: 'EXP012', date: '2024-07-20', description: 'Software de Gestão - Mensalidade', category: 'Serviços TI', amount: 250.00, status: 'Pago' },
+    { id: 'EXP013', date: '2024-05-15', description: 'Compra de Estoque - Fornecedor A', category: 'Compras', amount: 3800.00, status: 'Pago' },
+];
+
+export const mockProductSales = [
+    { id: 1, name: 'Paracetamol 500mg', category: 'Analgésicos', supplier: 'FarmacoLabs', quantity: 150, price: 12.50, date: '2024-06-01' },
+    { id: 2, name: 'Amoxicilina 250mg', category: 'Antibióticos', supplier: 'BioGen', quantity: 80, price: 35.00, date: '2024-06-02' },
+    { id: 3, name: 'Omeprazol 20mg', category: 'Gastro', supplier: 'PharmaPlus', quantity: 200, price: 18.00, date: '2024-06-01' },
+    { id: 4, name: 'Vitamina C', category: 'Vitaminas', supplier: 'VitaCorp', quantity: 300, price: 8.00, date: '2024-06-03' },
+    { id: 5, name: 'Ibuprofeno 400mg', category: 'Analgésicos', supplier: 'FarmacoLabs', quantity: 120, price: 15.00, date: '2024-06-02' },
+    { id: 6, name: 'Dipirona 1g', category: 'Analgésicos', supplier: 'FarmacoLabs', quantity: 180, price: 10.00, date: '2024-06-04' },
+    { id: 7, name: 'Pantoprazol 40mg', category: 'Gastro', supplier: 'PharmaPlus', quantity: 90, price: 25.00, date: '2024-06-03' },
+    { id: 8, name: 'Captopril 25mg', category: 'Cardiovascular', supplier: 'CardioMeds', quantity: 60, price: 22.00, date: '2024-06-04' },
+    { id: 9, name: 'Claritromicina 500mg', category: 'Antibióticos', supplier: 'BioGen', quantity: 40, price: 45.00, date: '2024-06-05' },
+    { id: 10, name: 'Probiótico', category: 'Gastro', supplier: 'VitaCorp', quantity: 100, price: 28.00, date: '2024-06-05' },
+    { id: 11, name: 'Paracetamol 500mg', category: 'Analgésicos', supplier: 'FarmacoLabs', quantity: 50, price: 12.50, date: '2024-06-06' },
+    { id: 12, name: 'Vitamina D', category: 'Vitaminas', supplier: 'VitaCorp', quantity: 200, price: 12.00, date: '2024-06-06' },
+    { id: 13, name: 'Amoxicilina 250mg', category: 'Antibióticos', supplier: 'BioGen', quantity: 30, price: 35.00, date: '2024-06-07' },
+    { id: 14, name: 'Omeprazol 20mg', category: 'Gastro', supplier: 'PharmaPlus', quantity: 70, price: 18.00, date: '2024-06-07' },
+    { id: 15, name: 'Paracetamol 500mg', category: 'Analgésicos', supplier: 'FarmacoLabs', quantity: 100, price: 12.50, date: '2024-05-15' },
+    { id: 16, name: 'Vitamina C', category: 'Vitaminas', supplier: 'VitaCorp', quantity: 250, price: 8.00, date: '2024-05-20' },
+    { id: 17, name: 'Omeprazol 20mg', category: 'Gastro', supplier: 'PharmaPlus', quantity: 150, price: 18.00, date: '2024-04-10' },
+];
+
+export const mockDeliveryData = [
+    { id: 'DEL001', orderId: 'ORD001', customerName: 'Ana Silva', address: 'Rua A, 123', deliveryPerson: 'João', status: 'Entregue', estimatedTime: '10:00', actualTime: '10:15', paymentStatus: 'Pago', date: '2024-06-01' },
+    { id: 'DEL002', orderId: 'ORD002', customerName: 'Bruno Costa', address: 'Av. B, 456', deliveryPerson: 'Maria', status: 'Em Rota', estimatedTime: '11:00', actualTime: null, paymentStatus: 'Pendente', date: '2024-06-01' },
+    { id: 'DEL003', orderId: 'ORD003', customerName: 'Carla Dias', address: 'Travessa C, 78', deliveryPerson: 'João', status: 'Pendente', estimatedTime: '12:00', actualTime: null, paymentStatus: 'Pago', date: '2024-06-01' },
+    { id: 'DEL004', orderId: 'ORD004', customerName: 'Daniel Rocha', address: 'Rua D, 90', deliveryPerson: 'Maria', status: 'Entregue', estimatedTime: '14:00', actualTime: '14:05', paymentStatus: 'Pago', date: '2024-06-02' },
+    { id: 'DEL005', orderId: 'ORD005', customerName: 'Eliana Souza', address: 'Av. E, 11', deliveryPerson: 'Pedro', status: 'Cancelado', estimatedTime: '15:00', actualTime: null, paymentStatus: 'Estornado', date: '2024-06-02' },
+    { id: 'DEL006', orderId: 'ORD006', customerName: 'Felipe Gomes', address: 'Rua F, 22', deliveryPerson: 'João', status: 'Entregue', estimatedTime: '16:00', actualTime: '16:30', paymentStatus: 'Pago', date: '2024-06-03' },
+    { id: 'DEL007', orderId: 'ORD007', customerName: 'Gabriela Lima', address: 'Av. G, 33', deliveryPerson: 'Pedro', status: 'Pendente', estimatedTime: '10:30', actualTime: null, paymentStatus: 'Pendente', date: '2024-06-03' },
+    { id: 'DEL008', orderId: 'ORD008', customerName: 'Hugo Martins', address: 'Rua H, 44', deliveryPerson: 'Maria', status: 'Em Rota', estimatedTime: '11:30', actualTime: null, paymentStatus: 'Pago', date: '2024-06-04' },
+    { id: 'DEL009', orderId: 'ORD009', customerName: 'Isabela Nunes', address: 'Travessa I, 55', deliveryPerson: 'João', status: 'Entregue', estimatedTime: '13:00', actualTime: '13:00', paymentStatus: 'Pago', date: '2024-06-04' },
+    { id: 'DEL010', orderId: 'ORD010', customerName: 'Julio Oliveira', address: 'Rua J, 66', deliveryPerson: 'Pedro', status: 'Pendente', estimatedTime: '14:30', actualTime: null, paymentStatus: 'Pago', date: '2024-06-05' },
+    { id: 'DEL011', orderId: 'ORD011', customerName: 'Laura Pereira', address: 'Av. L, 77', deliveryPerson: 'Maria', status: 'Entregue', estimatedTime: '09:00', actualTime: '09:10', paymentStatus: 'Pago', date: '2024-05-28' },
+    { id: 'DEL012', orderId: 'ORD012', customerName: 'Marcelo Queiroz', address: 'Rua M, 88', deliveryPerson: 'João', status: 'Pendente', estimatedTime: '11:00', actualTime: null, paymentStatus: 'Pendente', date: '2024-05-29' },
+    { id: 'DEL013', orderId: 'ORD013', customerName: 'Natalia Reis', address: 'Rua N, 99', deliveryPerson: 'Maria', status: 'Em Rota', estimatedTime: '13:45', actualTime: null, paymentStatus: 'Pendente', date: '2024-06-06' },
+    { id: 'DEL014', orderId: 'ORD014', customerName: 'Otavio Santos', address: 'Av. O, 10', deliveryPerson: 'João', status: 'Entregue', estimatedTime: '16:00', actualTime: '16:00', paymentStatus: 'Pago', date: '2024-06-06' },
+    { id: 'DEL015', orderId: 'ORD015', customerName: 'Paula Torres', address: 'Travessa P, 21', deliveryPerson: 'Pedro', status: 'Cancelado', estimatedTime: '10:00', actualTime: null, paymentStatus: 'Não Pago', date: '2024-06-07' },
+];
+
+export const mockCustomerData = [
+    { id: 'C001', name: 'João Silva', email: 'joao.silva@example.com', phone: '11987654321', registrationDate: '2023-01-15', lastPurchaseDate: '2024-06-20', totalPurchases: 1500.50, orderCount: 12, status: 'Ativo' },
+    { id: 'C002', name: 'Maria Souza', email: 'maria.souza@example.com', phone: '11991234567', registrationDate: '2023-02-01', lastPurchaseDate: '2024-06-18', totalPurchases: 2200.00, orderCount: 8, status: 'Ativo' },
+    { id: 'C003', name: 'Pedro Lima', email: 'pedro.lima@example.com', phone: '11988776655', registrationDate: '2023-03-10', lastPurchaseDate: '2024-05-25', totalPurchases: 750.80, orderCount: 5, status: 'Inativo' },
+    { id: 'C004', name: 'Ana Costa', email: 'ana.costa@example.com', phone: '11992345678', registrationDate: '2024-01-05', lastPurchaseDate: '2024-06-28', totalPurchases: 300.20, orderCount: 3, status: 'Ativo' },
+    { id: 'C005', name: 'Carlos Santos', email: 'carlos.s@example.com', phone: '11987651234', registrationDate: '2024-02-20', lastPurchaseDate: '2024-06-10', totalPurchases: 50.00, orderCount: 1, status: 'Novo' },
+    { id: 'C006', name: 'Mariana Pereira', email: 'mariana.p@example.com', phone: '11993456789', registrationDate: '2023-04-01', lastPurchaseDate: '2023-11-01', totalPurchases: 120.00, orderCount: 2, status: 'Inativo' },
+    { id: 'C007', name: 'Lucas Rocha', email: 'lucas.r@example.com', phone: '11981234567', registrationDate: '2024-05-01', lastPurchaseDate: '2024-06-05', totalPurchases: 800.00, orderCount: 4, status: 'Novo' },
+    { id: 'C008', name: 'Sofia Mendes', email: 'sofia.m@example.com', phone: '11990987654', registrationDate: '2023-06-15', lastPurchaseDate: '2024-06-22', totalPurchases: 450.00, orderCount: 6, status: 'Ativo' },
+    { id: 'C009', name: 'Gabriel Almeida', email: 'gabriel.a@example.com', phone: '11987659876', registrationDate: '2024-06-01', lastPurchaseDate: '2024-06-25', totalPurchases: 150.00, orderCount: 1, status: 'Novo' },
+    { id: 'C010', name: 'Isabela Fernandes', email: 'isabela.f@example.com', phone: '11991112233', registrationDate: '2023-07-01', lastPurchaseDate: '2024-06-01', totalPurchases: 900.00, orderCount: 7, status: 'Ativo' },
+    { id: 'C011', name: 'Rafael Cardoso', email: 'rafael.c@example.com', phone: '11983334455', registrationDate: '2023-08-01', lastPurchaseDate: '2024-01-10', totalPurchases: 200.00, orderCount: 2, status: 'Inativo' },
+    { id: 'C012', name: 'Juliana Gomes', email: 'juliana.g@example.com', phone: '11995556677', registrationDate: '2024-06-10', lastPurchaseDate: '2024-06-29', totalPurchases: 100.00, orderCount: 1, status: 'Novo' },
+    { id: 'C013', name: 'Fernando Dias', email: 'fernando.d@example.com', phone: '11986667788', registrationDate: '2023-09-01', lastPurchaseDate: '2024-06-15', totalPurchases: 1800.00, orderCount: 10, status: 'Ativo' },
+    { id: 'C014', name: 'Beatriz Martins', email: 'beatriz.m@example.com', phone: '11997778899', registrationDate: '2024-03-01', lastPurchaseDate: '2024-06-08', totalPurchases: 600.00, orderCount: 3, status: 'Ativo' },
+    { id: 'C015', name: 'Roberto Vieira', email: 'roberto.v@example.com', phone: '11988889900', registrationDate: '2023-10-01', lastPurchaseDate: '2024-02-01', totalPurchases: 350.00, orderCount: 4, status: 'Inativo' },
+];
+
 // Esta é uma simulação, inclua vendas para diferentes datas e produtos para ter dados para os gráficos
 export let vendasMock = [
     // Vendas de Junho
@@ -1341,3 +1498,200 @@ export const removerDocumentoFiscalMock = (id) => {
     }
     return false;
 };
+
+export const mockAuditLogs = [
+    {
+        id: 'AUD001',
+        timestamp: '2024-07-25T10:00:00Z',
+        user: 'admin@farmacia.com',
+        actionType: 'Login',
+        module: 'Sistema',
+        description: 'Login bem-sucedido do usuário admin@farmacia.com'
+    },
+    {
+        id: 'AUD002',
+        timestamp: '2024-07-25T10:05:30Z',
+        user: 'admin@farmacia.com',
+        actionType: 'Criação',
+        module: 'Produtos',
+        description: 'Novo produto "Paracetamol 750mg" criado.'
+    },
+    {
+        id: 'AUD003',
+        timestamp: '2024-07-25T10:15:45Z',
+        user: 'gerente@farmacia.com',
+        actionType: 'Edição',
+        module: 'Produtos',
+        description: 'Produto "Ibuprofeno 400mg" atualizado: preço de R$15.00 para R$14.50.'
+    },
+    {
+        id: 'AUD004',
+        timestamp: '2024-07-25T10:20:10Z',
+        user: 'admin@farmacia.com',
+        actionType: 'Exclusão',
+        module: 'Promoções',
+        description: 'Promoção "Desconto de Verão 10%" excluída.'
+    },
+    {
+        id: 'AUD005',
+        timestamp: '2024-07-25T10:30:00Z',
+        user: 'vendedor@farmacia.com',
+        actionType: 'Visualização',
+        module: 'Relatórios',
+        description: 'Relatório "Análise de Vendas" visualizado por vendedor@farmacia.com.'
+    },
+    {
+        id: 'AUD006',
+        timestamp: '2024-07-25T11:00:00Z',
+        user: 'admin@farmacia.com',
+        actionType: 'Criação',
+        module: 'Usuários',
+        description: 'Novo usuário "caixa01@farmacia.com" criado com perfil "Caixa".'
+    },
+    {
+        id: 'AUD007',
+        timestamp: '2024-07-25T11:15:00Z',
+        user: 'caixa01@farmacia.com',
+        actionType: 'Login',
+        module: 'Sistema',
+        description: 'Login bem-sucedido do usuário caixa01@farmacia.com'
+    },
+    {
+        id: 'AUD008',
+        timestamp: '2024-07-25T11:30:00Z',
+        user: 'caixa01@farmacia.com',
+        actionType: 'Venda',
+        module: 'Vendas',
+        description: 'Venda registrada: Pedido #20240725-001 (3 itens).'
+    },
+    {
+        id: 'AUD009',
+        timestamp: '2024-07-24T15:00:00Z',
+        user: 'gerente@farmacia.com',
+        actionType: 'Edição',
+        module: 'Promoções',
+        description: 'Promoção "Frete Grátis acima de R$150" status alterado para Inativa.'
+    },
+    {
+        id: 'AUD010',
+        timestamp: '2024-07-24T16:00:00Z',
+        user: 'admin@farmacia.com',
+        actionType: 'Configuração',
+        module: 'Sistema',
+        description: 'Configuração de impostos atualizada.'
+    },
+    {
+        id: 'AUD011',
+        timestamp: '2024-07-23T09:00:00Z',
+        user: 'admin@farmacia.com',
+        actionType: 'Criação',
+        module: 'Produtos',
+        description: 'Novo produto "Protetor Solar FPS 30" criado.'
+    },
+    {
+        id: 'AUD012',
+        timestamp: '2024-07-23T10:00:00Z',
+        user: 'gerente@farmacia.com',
+        actionType: 'Visualização',
+        module: 'Clientes',
+        description: 'Perfil do cliente "Maria Silva" visualizado.'
+    },
+    {
+        id: 'AUD013',
+        timestamp: '2024-07-22T08:00:00Z',
+        user: 'admin@farmacia.com',
+        actionType: 'Exclusão',
+        module: 'Usuários',
+        description: 'Usuário "antigo_func@farmacia.com" excluído.'
+    },
+    {
+        id: 'AUD014',
+        timestamp: '2024-07-22T09:30:00Z',
+        user: 'admin@farmacia.com',
+        actionType: 'Login Falho',
+        module: 'Sistema',
+        description: 'Tentativa de login falha para "desconhecido@farmacia.com".'
+    },
+    {
+        id: 'AUD015',
+        timestamp: '2024-07-22T09:35:00Z',
+        user: 'admin@farmacia.com',
+        actionType: 'Login Falho',
+        module: 'Sistema',
+        description: 'Tentativa de login falha para "admin@farmacia.com" (senha incorreta).'
+    },
+    {
+        id: 'AUD016',
+        timestamp: '2024-07-22T09:35:30Z',
+        user: 'admin@farmacia.com',
+        actionType: 'Login',
+        module: 'Sistema',
+        description: 'Login bem-sucedido do usuário admin@farmacia.com'
+    },
+];
+
+export const mockSpedFiles = [
+    {
+        id: 'SPED001',
+        fileName: 'SPED_CONTABIL_ECD_2023_FARMACIA_A.zip',
+        spedType: 'SPED Contábil (ECD)',
+        periodStart: '2023-01-01',
+        periodEnd: '2023-12-31',
+        generationDate: '2024-03-10T14:30:00Z',
+        status: 'Gerado'
+    },
+    {
+        id: 'SPED002',
+        fileName: 'SPED_CONTABIL_ECF_2023_FARMACIA_A.zip',
+        spedType: 'SPED Contábil (ECF)',
+        periodStart: '2023-01-01',
+        periodEnd: '2023-12-31',
+        generationDate: '2024-05-20T10:00:00Z',
+        status: 'Gerado'
+    },
+    {
+        id: 'SPED003',
+        fileName: 'SPED_FISCAL_ICMS_IPI_2024_01_FARMACIA_A.zip',
+        spedType: 'SPED Fiscal (ICMS/IPI)',
+        periodStart: '2024-01-01',
+        periodEnd: '2024-01-31',
+        generationDate: '2024-02-15T09:00:00Z',
+        status: 'Gerado'
+    },
+    {
+        id: 'SPED004',
+        fileName: 'SPED_CONTRIBUICOES_PIS_COFINS_2024_01_FARMACIA_A.zip',
+        spedType: 'SPED Contribuições (PIS/COFINS)',
+        periodStart: '2024-01-01',
+        periodEnd: '2024-01-31',
+        generationDate: '2024-02-20T11:00:00Z',
+        status: 'Erro' // Exemplo de status de erro
+    },
+    {
+        id: 'SPED005',
+        fileName: 'SPED_CONTABIL_ECD_2022_FARMACIA_A.zip',
+        spedType: 'SPED Contábil (ECD)',
+        periodStart: '2022-01-01',
+        periodEnd: '2022-12-31',
+        generationDate: '2023-03-05T16:00:00Z',
+        status: 'Gerado'
+    },
+    {
+        id: 'SPED006',
+        fileName: 'SPED_CONTABIL_ECF_2022_FARMACIA_A.zip',
+        spedType: 'SPED Contábil (ECF)',
+        periodStart: '2022-01-01',
+        periodEnd: '2022-12-31',
+        generationDate: '2023-05-15T09:30:00Z',
+        status: 'Gerado'
+    },
+    {
+        id: 'SPED007',
+        fileName: 'SPED_CONTABIL_ECD_2024_FARMACIA_A.zip',
+        spedType: 'SPED Contábil (ECD)',
+        periodStart: '2024-01-01',
+        periodEnd: '2024-12-31',
+        generationDate: '2025-01-10T10:00:00Z',
+        status: 'Em Processamento' // Exemplo de status em processamento
+    }
+];

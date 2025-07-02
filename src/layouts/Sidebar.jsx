@@ -32,6 +32,7 @@ const sidebarLayout = [
     items: [
       { name: "Vendas", path: "/vendas", icon: <FiShoppingCart /> },
       { name: "SNGPC", path: "/sngpc", icon: <FiClipboard /> },
+      { name: "SPED", path: "/sped", icon: <FiClipboard /> },
       { name: "Área fiscal", path: "/area-fiscal", icon: <FiFileText /> },
       { name: "Consulta de preços", path: "/consulta-precos", icon: <FiDollarSign /> },
       { name: "Caixa", path: "/caixa", icon: <FiDollarSign /> },

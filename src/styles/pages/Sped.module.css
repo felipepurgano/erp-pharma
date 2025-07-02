@@ -1,0 +1,331 @@
+/* --- Variáveis CSS (Reutilizando as variáveis globais) --- */
+:root {
+    --primary-color: #00b89f;
+    --primary-color-light: #e6f7f5;
+    --primary-color-dark: #008f7b;
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --card-background-color: #ffffff;
+    --text-color: #343a40;
+    --text-color-light: #6c757d;
+    --border-color: #dee2e6;
+    --border-color-light: #eff1f3;
+    --input-background-color: #ffffff;
+    --button-text-color: #ffffff;
+    --secondary-button-background-color: #f0f0f0;
+    --secondary-button-text-color: #343a40;
+    --grid-header-background: #e9ecef;
+    --grid-header-text-color: #495057;
+    --grid-row-even-background: #fdfdfe;
+    --grid-row-hover-background: #e9f7f6;
+  
+    /* Cores para Status de SPED */
+    --status-success: #28a745;    /* Verde para Gerado */
+    --status-error: #dc3545;      /* Vermelho para Erro */
+    --status-processing: #ffc107; /* Amarelo/Laranja para Em Processamento */
+  }
+  
+  /* Base da página */
+  .spedPage {
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: var(--text-color);
+  }
+  
+  /* Título da página */
+  .pageTitle {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 10px;
+    background-color: var(--primary-color-light);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-top: 0;
+  }
+  
+  /* Seções (Gerar e Histórico) */
+  .formSection,
+  .historySection {
+    background-color: var(--card-background-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+  }
+  
+  .formSection h2,
+  .historySection h2 {
+    color: var(--primary-color-dark);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  
+  .formRow {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center; /* Centraliza os grupos de filtro */
+  }
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+    min-width: 250px; /* Largura mínima para os grupos */
+    flex: 1; /* Ocupa o espaço disponível */
+  }
+  
+  .formGroup label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color-light);
+  }
+  
+  /* Inputs de texto e selects */
+  .textInput,
+  .selectInput {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: var(--input-background-color);
+    color: var(--text-color);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .textInput:focus,
+  .selectInput:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 184, 159, 0.2);
+    outline: none;
+  }
+  
+  /* DatePicker input */
+  .datePickerInput {
+    width: 100%; /* Ocupa a largura total do seu contêiner */
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: var(--input-background-color);
+    color: var(--text-color);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box; /* Garante que padding e border não aumentem a largura */
+    }
+  .react-datepicker-wrapper .react-datepicker__input-container input {
+      /* Estiliza o input real dentro do DatePicker */
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      font-size: 1rem;
+      background-color: var(--input-background-color);
+      color: var(--text-color);
+      width: 100%;
+      box-sizing: border-box;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .react-datepicker-wrapper .react-datepicker__input-container input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(0, 184, 159, 0.2);
+      outline: none;
+  }
+  
+  .generateButton {
+    background-color: var(--primary-color);
+    color: var(--button-text-color);
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    display: block; /* Para ocupar a largura total do container do botão */
+    margin: 1.5rem auto 0.5rem auto; /* Centraliza o botão */
+    width: fit-content; /* Ajusta a largura ao conteúdo */
+  }
+  
+  .generateButton:hover {
+    background-color: var(--primary-color-dark);
+  }
+  
+  .generationMessage {
+      text-align: center;
+      margin-top: 1rem;
+      padding: 0.75rem;
+      border-radius: 5px;
+      background-color: var(--primary-color-light);
+      color: var(--primary-color-dark);
+      font-weight: 500;
+  }
+  
+  /* Filtros do Histórico */
+  .filtersSection {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-end;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem; /* Espaçamento extra para separar dos filtros de geração */
+      border-bottom: 1px solid var(--border-color); /* Linha divisória */
+  }
+  
+  .clearFiltersButton {
+    background-color: var(--primary-color); /* Mesma cor do "Adicionar Promoção" */
+    color: var(--button-text-color);
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    margin-left: auto;
+    align-self: flex-end;
+  }
+  
+  .clearFiltersButton:hover {
+    background-color: var(--primary-color-dark);
+  }
+  
+  
+  /* --- Tabela do Histórico de SPED --- */
+  .tableContainer {
+      width: 100%;
+      overflow-x: auto;
+  }
+  
+  .spedTable {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px; /* Largura mínima para a tabela */
+  }
+  
+  .spedTable th,
+  .spedTable td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .spedTable th {
+    background-color: var(--grid-header-background);
+    color: var(--grid-header-text-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+  }
+  
+  .spedTable tbody tr:nth-child(even) {
+    background-color: var(--grid-row-even-background);
+  }
+  
+  .spedTable tbody tr:hover {
+    background-color: var(--grid-row-hover-background);
+  }
+  
+  .spedTable td {
+    color: var(--text-color);
+    vertical-align: middle;
+  }
+  
+  .spedTable tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  /* Badges de Status */
+  .statusBadge {
+      padding: 0.3em 0.6em;
+      border-radius: 0.25rem;
+      font-size: 0.85em;
+      font-weight: bold;
+      display: inline-block;
+      text-align: center;
+      white-space: nowrap;
+      color: white; /* Cor do texto padrão para os badges */
+  }
+  
+  .statusSuccess {
+      background-color: var(--status-success);
+  }
+  .statusError {
+      background-color: var(--status-error);
+  }
+  .statusProcessing {
+      background-color: var(--status-processing);
+      color: var(--text-color); /* Texto escuro para contraste */
+  }
+  
+  .downloadButton {
+      background: none;
+      border: none;
+      color: var(--primary-color);
+      cursor: pointer;
+      font-size: 1.3rem;
+      transition: color 0.2s ease;
+  }
+  
+  .downloadButton:hover {
+      color: var(--primary-color-dark);
+  }
+  
+  .errorText {
+      color: var(--status-error);
+      font-weight: bold;
+      font-size: 0.9rem;
+  }
+  
+  .noDataMessage {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-color-light);
+    font-style: italic;
+    background-color: var(--card-background-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-top: 2rem;
+  }
+  
+  
+  /* Responsividade */
+  @media (max-width: 992px) {
+    .formRow,
+    .filtersSection {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .formGroup,
+    .filterGroup {
+      min-width: unset;
+      width: 100%;
+    }
+    .generateButton,
+    .clearFiltersButton {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+      .spedPage {
+          padding: 1rem;
+      }
+      .formSection, .historySection {
+          padding: 1rem;
+      }
+      .spedTable th,
+      .spedTable td {
+          padding: 8px 10px;
+          font-size: 0.85rem;
+      }
+  }

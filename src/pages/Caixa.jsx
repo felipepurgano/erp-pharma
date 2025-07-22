@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import Sidebar from "@/layouts/Sidebar";
 import styles from "@/styles/pages/Caixa.module.css";
-import { FiTrash, FiShoppingCart, FiUsers, FiXCircle, FiUpload, FiPrinter, FiPlus } from "react-icons/fi"; // FiUpload para o novo ícone
-import { produtosMock, clientesMock } from "@/utils/mocks"; // Importando clientesMock
+import { FiTrash, FiShoppingCart, FiUsers, FiXCircle, FiUpload, FiPrinter, FiPlus } from "react-icons/fi";
+import { produtosMock, clientesMock } from "@/utils/mocks";
 
 export default function Caixa() {
     // Estados para os inputs de produto
     const [codigoProduto, setCodigoProduto] = useState("");
     const [nomeProdutoBusca, setNomeProdutoBusca] = useState("");
     const [quantidade, setQuantidade] = useState(1);
-    const [descontoItem, setDescontoItem] = useState(0); // Desconto por item
+    const [descontoItem, setDescontoItem] = useState(0);
 
     // Estado para o produto "em foco" para adicionar
     const [produtoEmFoco, setProdutoEmFoco] = useState(null);
@@ -18,22 +18,22 @@ export default function Caixa() {
     const [itensVenda, setItensVenda] = useState([]);
 
     // Estados para o resumo da venda
-    const [descontoTotalVenda, setDescontoTotalVenda] = useState(0); // Desconto geral da venda
-    const [acrescimoTotalVenda, setAcrescimoTotalVenda] = useState(0); // Acréscimo geral da venda
+    const [descontoTotalVenda, setDescontoTotalVenda] = useState(0);
+    const [acrescimoTotalVenda, setAcrescimoTotalVenda] = useState(0);
 
-    // Simulação de informações da caixa (como no header da imagem original)
+    // Simulação de informações da caixa
     const operador = "OPERADOR";
     const terminal = "1";
     const empresa = "PHARMA";
     const versaoPDV = "1.10.0";
-    const statusOnline = true; // true para online, false para offline
+    const statusOnline = true;
 
-    // --- Estados e Funções para o Modal de Clientes (Replicados de Vendas.jsx) ---
+    // --- Estados e Funções para o Modal de Clientes ---
     const [showModal, setShowModal] = useState(false);
     const [clienteBuscaNome, setClienteBuscaNome] = useState("");
     const [clienteBuscaCpf, setClienteBuscaCpf] = useState("");
-    const [clientesFiltrados, setClientesFiltrados] = useState([]); // Inicializa vazio
-    const [clienteSelecionado, setClienteSelecionado] = useState(null); // Para exibir o cliente selecionado
+    const [clientesFiltrados, setClientesFiltrados] = useState([]);
+    const [clienteSelecionado, setClienteSelecionado] = useState(null);
 
     const abrirModalClientes = () => setShowModal(true);
     const fecharModalClientes = () => {
@@ -48,7 +48,6 @@ export default function Caixa() {
         fecharModalClientes();
     };
 
-    // Efeito para filtrar clientes no modal
     useEffect(() => {
         const nomeOk = clienteBuscaNome.trim().length >= 3;
         const cpfOk = clienteBuscaCpf.trim().length >= 3;
@@ -58,20 +57,56 @@ export default function Caixa() {
             return;
         }
 
-        const filtrados = clientesMock.filter((cliente) =>
-            cliente.nome.toLowerCase().includes(clienteBuscaNome.toLowerCase()) &&
-            cliente.cpf.includes(clienteBuscaCpf)
-        );
+        const filtrados = clientesMock.filter((cliente) => {
+            const nomeClienteLower = cliente.nome ? cliente.nome.toLowerCase() : ''; // Segurança
+            const cpfCliente = cliente.cpf ? String(cliente.cpf) : ''; // Segurança
+
+            const nomeMatches = clienteBuscaNome.trim() === '' || nomeClienteLower.includes(clienteBuscaNome.toLowerCase().trim());
+            const cpfMatches = clienteBuscaCpf.trim() === '' || cpfCliente.includes(clienteBuscaCpf.trim());
+            
+            return nomeMatches && cpfMatches;
+        });
         setClientesFiltrados(filtrados);
     }, [clienteBuscaNome, clienteBuscaCpf]);
     // --- Fim dos Estados e Funções para o Modal de Clientes ---
 
 
-    // Filtra produtos conforme código ou nome
+    // Filtra produtos conforme código ou nome, exigindo 3+ caracteres
     const produtosFiltrados = produtosMock.filter((p) => {
-        const nomeValido = nomeProdutoBusca.length >= 2 && p.nome.toLowerCase().includes(nomeProdutoBusca.toLowerCase());
-        const codigoValido = codigoProduto && p.codigo === codigoProduto;
-        return nomeValido || codigoValido;
+        const nomeBuscaValor = nomeProdutoBusca.trim().toLowerCase();
+        const codigoBuscaValor = codigoProduto.trim().toLowerCase();
+
+        const nomeBuscaAtiva = nomeBuscaValor.length >= 3;
+        const codigoBuscaAtiva = codigoBuscaValor.length >= 3;
+
+        // Se nenhuma busca está ativa (menos de 3 caracteres em ambas as caixas),
+        // não retorna nenhum produto.
+        if (!nomeBuscaAtiva && !codigoBuscaAtiva) {
+            return false;
+        }
+
+        // Prepara as propriedades do produto para comparação, garantindo que são strings
+        const pNomeComercialLower = typeof p.nomeComercial === 'string' ? p.nomeComercial.toLowerCase() : '';
+        const pNomeGenericoLower = typeof p.nomeGenerico === 'string' ? p.nomeGenerico.toLowerCase() : '';
+        const pSkuLower = typeof p.sku === 'string' ? p.sku.toLowerCase() : '';
+        const pCodigoBarrasLower = typeof p.codigoBarras === 'string' ? p.codigoBarras.toLowerCase() : '';
+
+        // Variável para armazenar se o produto corresponde a ALGUMA das buscas ativas
+        let corresponde = false;
+
+        // Se a busca por nome está ativa, verifica se o nome comercial OU genérico do produto inclui o valor buscado
+        if (nomeBuscaAtiva) {
+            corresponde = pNomeComercialLower.includes(nomeBuscaValor) || pNomeGenericoLower.includes(nomeBuscaValor);
+        }
+
+        // Se a busca por código está ativa, verifica se o SKU OU código de barras do produto inclui o valor buscado.
+        // Usa `||` (OU) para que o produto corresponda se encontrar por nome OU por código.
+        if (codigoBuscaAtiva) {
+            corresponde = corresponde || pSkuLower.includes(codigoBuscaValor) || pCodigoBarrasLower.includes(codigoBuscaValor);
+        }
+        
+        // Retorna verdadeiro se o produto corresponde a alguma das buscas ativas
+        return corresponde;
     });
 
     // Função para calcular o valor final de um item
@@ -87,24 +122,33 @@ export default function Caixa() {
             return;
         }
 
-        const novoItem = {
-            id: Date.now(), // Usar um ID único para a key
-            codigo: produtoEmFoco.codigo,
-            nome: produtoEmFoco.nome,
-            precoUnitario: produtoEmFoco.preco,
-            quantidade: parseInt(quantidade),
-            desconto: parseFloat(descontoItem || 0),
-            valorFinal: calcularValorFinalItem(produtoEmFoco.preco, parseInt(quantidade), parseFloat(descontoItem || 0)),
-        };
+        // Usamos codigoBarras para identificar unicamente o item na venda
+        const itemExistenteIndex = itensVenda.findIndex(item => item.codigo === produtoEmFoco.codigoBarras);
 
-        setItensVenda([...itensVenda, novoItem]);
+        if (itemExistenteIndex > -1) {
+            const novaListaItens = [...itensVenda];
+            const itemExistente = novaListaItens[itemExistenteIndex];
+            itemExistente.quantidade += parseInt(quantidade);
+            itemExistente.valorFinal = calcularValorFinalItem(itemExistente.precoUnitario, itemExistente.quantidade, itemExistente.desconto);
+            setItensVenda(novaListaItens);
+        } else {
+            const novoItem = {
+                id: Date.now(),
+                codigo: produtoEmFoco.codigoBarras, // Usar codigoBarras
+                nome: produtoEmFoco.nomeComercial, // Usar nomeComercial
+                precoUnitario: produtoEmFoco.precoVenda, // Usar precoVenda
+                quantidade: parseInt(quantidade),
+                desconto: parseFloat(descontoItem || 0),
+                valorFinal: calcularValorFinalItem(produtoEmFoco.precoVenda, parseInt(quantidade), parseFloat(descontoItem || 0)),
+            };
+            setItensVenda([...itensVenda, novoItem]);
+        }
 
-        // Limpar campos após adicionar
         setCodigoProduto("");
         setNomeProdutoBusca("");
         setQuantidade(1);
         setDescontoItem(0);
-        setProdutoEmFoco(null); // Limpa o produto em foco
+        setProdutoEmFoco(null);
     };
 
     const removerItemVenda = (id) => {
@@ -117,7 +161,6 @@ export default function Caixa() {
                 const qtd = parseInt(novaQtd);
                 return {
                     ...item,
-                    // Garante que a quantidade é pelo menos 1 e é um número
                     quantidade: isNaN(qtd) || qtd <= 0 ? 1 : qtd,
                     valorFinal: calcularValorFinalItem(item.precoUnitario, isNaN(qtd) || qtd <= 0 ? 1 : qtd, item.desconto),
                 };
@@ -132,9 +175,12 @@ export default function Caixa() {
     const valorAcrescimoTotal = (totalItens * (parseFloat(acrescimoTotalVenda) / 100)) || 0;
     const totalDaVenda = (totalItens - valorDescontoTotal + valorAcrescimoTotal).toFixed(2);
 
-    // Efeito para limpar o produto em foco se a busca for apagada
+    // Efeito para limpar o produto em foco se a busca for apagada ou inválida
     useEffect(() => {
-        if (!codigoProduto && !nomeProdutoBusca && produtoEmFoco) {
+        const nomeBuscaValida = nomeProdutoBusca.trim().length >= 3;
+        const codigoBuscaValida = codigoProduto.trim().length >= 3;
+
+        if (!nomeBuscaValida && !codigoBuscaValida && produtoEmFoco) {
             setProdutoEmFoco(null);
         }
     }, [codigoProduto, nomeProdutoBusca, produtoEmFoco]);
@@ -142,17 +188,14 @@ export default function Caixa() {
     // Função para simular a importação de um orçamento
     const importarOrcamento = () => {
         const numeroOrcamentoSimulado = Math.floor(Math.random() * 100000) + 1;
-        // Para simular, podemos adicionar alguns itens de exemplo ou apenas alertar
         alert(`Simulando importação do Orçamento #${numeroOrcamentoSimulado}.`);
-        // Aqui você integraria com sua API para buscar o orçamento real
-        // Por exemplo: fetch(`/api/orcamentos/${numeroOrcamentoSimulado}`).then(...)
-        // Para demonstração, vamos adicionar alguns itens fictícios:
         const orcamentoFicticioItens = [
-            { id: Date.now() + 1, codigo: "12345", nome: "Dipirona 500mg", precoUnitario: 5.50, quantidade: 2, desconto: 0, valorFinal: 11.00 },
-            { id: Date.now() + 2, codigo: "67890", nome: "Amoxicilina 250mg", precoUnitario: 12.00, quantidade: 1, desconto: 10, valorFinal: 10.80 },
+            // Adapte estes para as novas propriedades do seu mocks.js
+            { id: Date.now() + 1, codigo: "7896006209809", nome: "Dorflex", precoUnitario: 12.50, quantidade: 2, desconto: 0, valorFinal: 25.00 },
+            { id: Date.now() + 2, codigo: "7891234567890", nome: "Amoxicilina", precoUnitario: 25.00, quantidade: 1, desconto: 10, valorFinal: 22.50 },
         ];
         setItensVenda(prevItens => [...prevItens, ...orcamentoFicticioItens]);
-        setClienteSelecionado(clientesMock[0]); // Seleciona um cliente fictício para o orçamento
+        setClienteSelecionado(clientesMock[0]);
     };
 
     return (
@@ -223,22 +266,26 @@ export default function Caixa() {
                     />
                 </div>
 
-                {/* Lista de Produtos Filtrados / Sugestões - Com botão Adicionar */}
-                {(produtosFiltrados.length > 0 && (nomeProdutoBusca.length >= 2 || codigoProduto)) && (
+                {/* Lista de Produtos Filtrados / Sugestões - Só exibe se há 3+ caracteres e resultados */}
+                {(
+                    // Verifica se há produtos filtrados E se a busca é "ativa" (3+ caracteres em qualquer campo)
+                    produtosFiltrados.length > 0 &&
+                    (nomeProdutoBusca.trim().length >= 3 || codigoProduto.trim().length >= 3)
+                ) && (
                     <div className={styles.listaProdutosCaixa}>
                         {produtosFiltrados.map((produto) => (
-                            <div key={produto.codigo} className={styles.produtoPreviewItem}>
+                            <div key={produto.codigoBarras} className={styles.produtoPreviewItem}>
                                 <div>
-                                    <p><strong>Medicamento:</strong> {produto.nome}</p>
+                                    <p><strong>Medicamento:</strong> {produto.nomeComercial}</p>
                                     <p><strong>Laboratório:</strong> {produto.laboratorio}</p>
-                                    <p><strong>Preço:</strong> R$ {produto.preco.toFixed(2)}</p>
+                                    <p><strong>Preço:</strong> R$ {produto.precoVenda.toFixed(2)}</p>
                                 </div>
                                 <button
                                     className={styles.button}
                                     onClick={() => setProdutoEmFoco(produto)}
                                 >
                                     <FiPlus style={{ marginRight: "6px" }} />
-                                    {produtoEmFoco && produtoEmFoco.codigo === produto.codigo ? "Em foco" : "Selecionar"}
+                                    {produtoEmFoco && produtoEmFoco.codigoBarras === produto.codigoBarras ? "Em foco" : "Selecionar"}
                                 </button>
                             </div>
                         ))}
@@ -249,11 +296,11 @@ export default function Caixa() {
                 {produtoEmFoco && (
                     <div className={styles.addItemSection}>
                         <div className={styles.itemInfo}>
-                            <p>Adicionando: <strong>{produtoEmFoco.nome}</strong></p>
-                            <p>Preço Unitário: R$ {produtoEmFoco.preco.toFixed(2)}</p>
+                            <p>Adicionando: <strong>{produtoEmFoco.nomeComercial}</strong></p>
+                            <p>Preço Unitário: R$ {produtoEmFoco.precoVenda.toFixed(2)}</p>
                             <p>Quantidade: {quantidade}</p>
                             <p>Desconto do Item: {descontoItem}%</p>
-                            <p>Total do Item: R$ {calcularValorFinalItem(produtoEmFoco.preco, quantidade, descontoItem).toFixed(2)}</p>
+                            <p>Total do Item: R$ {calcularValorFinalItem(produtoEmFoco.precoVenda, quantidade, descontoItem).toFixed(2)}</p>
                         </div>
                         <button
                             className={styles.buttonAddItem}
@@ -287,7 +334,7 @@ export default function Caixa() {
                                         type="number"
                                         min="1"
                                         value={item.quantidade}
-                                        onChange={(e) => alterQuantidadeItem(item.id, e.target.value)}
+                                        onChange={(e) => alterarQuantidadeItem(item.id, e.target.value)}
                                         className={styles.qtdInput}
                                     />
                                 </span>
@@ -353,7 +400,7 @@ export default function Caixa() {
                     </button>
                 </div>
 
-                {/* Modal de Clientes (Replicado de Vendas.jsx) */}
+                {/* Modal de Clientes */}
                 {showModal && (
                     <div className={styles.modalOverlay}>
                         <div className={styles.modalContent}>

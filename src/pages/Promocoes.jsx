@@ -89,7 +89,7 @@ export default function Promocoes() {
                         endDate: formattedEndDate,
                         // Recalcular status se necessário, ou deixar manual
                         status: currentPromotion.status // Mantém o status do formulário
-                      }
+                    }
                     : promo
             ));
             setIsEditing(false);
@@ -232,7 +232,7 @@ export default function Promocoes() {
                                 />
                             </div>
                         </div>
-                        
+
                         <div className={styles.formGroup}>
                             <label htmlFor="description">Descrição</label>
                             <textarea
@@ -245,7 +245,7 @@ export default function Promocoes() {
                                 placeholder="Descreva os detalhes da promoção"
                             ></textarea>
                         </div>
-                        
+
                         <div className={styles.formGroup}>
                             <label htmlFor="status">Status da Promoção</label>
                             <select
@@ -275,7 +275,7 @@ export default function Promocoes() {
                 </div>
 
                 {/* Filtros da Tabela de Promoções */}
-                <div className={styles.filtersSection} style={{marginTop: '3rem'}}>
+                <div className={styles.filtersSection} style={{ marginTop: '3rem' }}>
                     <div className={styles.filterGroup}>
                         <label>Buscar por Nome:</label>
                         <input

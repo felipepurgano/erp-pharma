@@ -63,12 +63,12 @@ export default function Vendas() {
         const termoCodigo = codigo.trim();
 
         const nomeMatch = termoBuscaNome === "" ||
-                            p.nomeComercial.toLowerCase().includes(termoBuscaNome) ||
-                            p.nomeGenerico.toLowerCase().includes(termoBuscaNome);
+            p.nomeComercial.toLowerCase().includes(termoBuscaNome) ||
+            p.nomeGenerico.toLowerCase().includes(termoBuscaNome);
 
         const codigoMatch = termoCodigo === "" ||
-                            p.codigoBarras.includes(termoCodigo) ||
-                            p.sku.toLowerCase().includes(termoCodigo);
+            p.codigoBarras.includes(termoCodigo) ||
+            p.sku.toLowerCase().includes(termoCodigo);
 
         if (termoBuscaNome === "" && termoCodigo === "") {
             return false;
@@ -105,8 +105,8 @@ export default function Vendas() {
             const novaQtdTotal = itemAtualizado.quantidade + qtd;
 
             if (novaQtdTotal > produtoOriginal.estoqueAtual) {
-                 alert(`Estoque insuficiente para ${produtoOriginal.nomeComercial} ao adicionar mais. Disponível: ${produtoOriginal.estoqueAtual}`);
-                 return;
+                alert(`Estoque insuficiente para ${produtoOriginal.nomeComercial} ao adicionar mais. Disponível: ${produtoOriginal.estoqueAtual}`);
+                return;
             }
 
             itemAtualizado.quantidade = novaQtdTotal;
@@ -399,8 +399,8 @@ export default function Vendas() {
                                 {/* Alteração na renderização: Só mapeia clientesFiltrados se houver itens */}
                                 {clientesFiltrados.length === 0 ? (
                                     <div className={styles.noItemsMessage}>
-                                        { (clienteBuscaNome.length > 0 || clienteBuscaCpf.length > 0) &&
-                                          (clienteBuscaNome.length < 3 && clienteBuscaCpf.length < 3)
+                                        {(clienteBuscaNome.length > 0 || clienteBuscaCpf.length > 0) &&
+                                            (clienteBuscaNome.length < 3 && clienteBuscaCpf.length < 3)
                                             ? "Digite no mínimo 3 caracteres para buscar."
                                             : "Nenhum cliente encontrado."
                                         }

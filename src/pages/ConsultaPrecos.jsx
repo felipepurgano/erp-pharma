@@ -121,7 +121,7 @@ export default function ConsultaPrecos() {
                 {!selectedProduct && searchTerm.trim() !== "" && filteredProducts.length === 0 && (
                     <div className={styles.noResultsMessage}>Nenhum produto encontrado com o termo "{searchTerm}".</div>
                 )}
-                 {!selectedProduct && searchTerm.trim() === "" && (
+                {!selectedProduct && searchTerm.trim() === "" && (
                     <div className={styles.initialMessage}>
                         Comece a digitar no campo de busca para encontrar produtos e ver seus detalhes de preço e estoque.
                     </div>

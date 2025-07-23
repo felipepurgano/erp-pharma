@@ -39,27 +39,27 @@ export default function AnaliseProdutos() {
         let filtered = mockProductSales.filter(product => {
             const productDate = new Date(product.date);
             // Certifica-se de que as datas de início/fim sejam tratadas como o início/fim do dia
-            const startOfDay = startDate ? new Date(startDate.setHours(0,0,0,0)) : null;
-            const endOfDay = endDate ? new Date(endDate.setHours(23,59,59,999)) : null;
+            const startOfDay = startDate ? new Date(startDate.setHours(0, 0, 0, 0)) : null;
+            const endOfDay = endDate ? new Date(endDate.setHours(23, 59, 59, 999)) : null;
 
             const matchesDate = (!startOfDay || productDate >= startOfDay) &&
-                                (!endOfDay || productDate <= endOfDay);
+                (!endOfDay || productDate <= endOfDay);
             const matchesCategory = !selectedCategory || product.category === selectedCategory;
             const matchesSupplier = !selectedSupplier || product.supplier === selectedSupplier;
-            const matchesSearch = !searchTerm || 
-                                  product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                  product.id.toString().includes(searchTerm);
+            const matchesSearch = !searchTerm ||
+                product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                product.id.toString().includes(searchTerm);
 
             return matchesDate && matchesCategory && matchesSupplier && matchesSearch;
         });
 
         setFilteredProducts(filtered);
-        
+
         // Calcular métricas de resumo
         const totalRevenue = filtered.reduce((sum, p) => sum + (p.quantity * p.price), 0);
         const totalQuantitySold = filtered.reduce((sum, p) => sum + p.quantity, 0);
         // Usar um Set para contar produtos únicos de forma mais robusta (se houver vendas repetidas do mesmo ID/nome)
-        const uniqueProductsCount = new Set(filtered.map(p => p.id)).size; 
+        const uniqueProductsCount = new Set(filtered.map(p => p.id)).size;
 
         setSummaryMetrics({
             totalRevenue: totalRevenue.toFixed(2),

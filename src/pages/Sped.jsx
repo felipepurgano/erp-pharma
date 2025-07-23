@@ -44,13 +44,13 @@ export default function SpedAccounting() {
         // 2. Filtrar por Data de Geração
         currentHistory = currentHistory.filter(file => {
             const fileGenerationDate = new Date(file.generationDate);
-            const startOfDay = filterGenerationDateStart ? new Date(filterGenerationDateStart.setHours(0,0,0,0)) : null;
-            const endOfDay = filterGenerationDateEnd ? new Date(filterGenerationDateEnd.setHours(23,59,59,999)) : null;
+            const startOfDay = filterGenerationDateStart ? new Date(filterGenerationDateStart.setHours(0, 0, 0, 0)) : null;
+            const endOfDay = filterGenerationDateEnd ? new Date(filterGenerationDateEnd.setHours(23, 59, 59, 999)) : null;
 
             return (!startOfDay || fileGenerationDate >= startOfDay) &&
-                   (!endOfDay || fileGenerationDate <= endOfDay);
+                (!endOfDay || fileGenerationDate <= endOfDay);
         });
-        
+
         // Ordenar do mais recente para o mais antigo
         currentHistory.sort((a, b) => new Date(b.generationDate) - new Date(a.generationDate));
 

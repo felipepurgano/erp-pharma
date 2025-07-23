@@ -38,7 +38,7 @@ export default function FechamentoMensal() {
         let totalRevenue = 0;
         let totalSimulatedCost = 0; // Custo simulado, por exemplo, 60% do preço de venda
         const salesOrderIds = new Set(); // Para contar pedidos únicos
-        
+
         salesForMonth.forEach(sale => {
             const revenueItem = sale.quantity * sale.price;
             totalRevenue += revenueItem;
@@ -51,7 +51,7 @@ export default function FechamentoMensal() {
         deliveriesForMonth.forEach(delivery => {
             salesOrderIds.add(delivery.orderId); // Contar IDs de pedidos únicos das entregas
         });
-        
+
         const numberOfSalesItems = salesForMonth.length; // Número de itens vendidos
         const numberOfUniqueOrders = salesOrderIds.size; // Número de pedidos únicos
         const numberOfDeliveries = deliveriesForMonth.length;

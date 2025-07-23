@@ -248,7 +248,7 @@ export default function Convenios() {
                                     placeholder="https://www.convenio.com.br"
                                 />
                             </div>
-                             <div className={styles.inputGroup}>
+                            <div className={styles.inputGroup}>
                                 <label htmlFor="percentualDescontoPadrao">Desconto Padrão (%):</label>
                                 <input
                                     id="percentualDescontoPadrao"
@@ -295,7 +295,7 @@ export default function Convenios() {
                                     className={styles.checkboxField}
                                 />
                             </div>
-                             <div className={styles.inputGroupCheckbox}>
+                            <div className={styles.inputGroupCheckbox}>
                                 <label htmlFor="status">Convênio Ativo?</label>
                                 <input
                                     id="status"

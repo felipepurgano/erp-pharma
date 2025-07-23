@@ -28,29 +28,29 @@ export default function AnaliseClientes() {
     useEffect(() => {
         let filtered = mockCustomerData.filter(customer => {
             const dateToCheck = new Date(filterType === 'registrationDate' ? customer.registrationDate : customer.lastPurchaseDate);
-            const startOfDay = startDate ? new Date(startDate.setHours(0,0,0,0)) : null;
-            const endOfDay = endDate ? new Date(endDate.setHours(23,59,59,999)) : null;
+            const startOfDay = startDate ? new Date(startDate.setHours(0, 0, 0, 0)) : null;
+            const endOfDay = endDate ? new Date(endDate.setHours(23, 59, 59, 999)) : null;
 
             const matchesDate = (!startOfDay || dateToCheck >= startOfDay) &&
-                                (!endOfDay || dateToCheck <= endOfDay);
+                (!endOfDay || dateToCheck <= endOfDay);
             const matchesStatus = !selectedStatus || customer.status === selectedStatus;
-            const matchesSearch = !searchTerm || 
-                                  customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                  customer.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                  customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                  customer.phone.toLowerCase().includes(searchTerm.toLowerCase());
+            const matchesSearch = !searchTerm ||
+                customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                customer.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                customer.phone.toLowerCase().includes(searchTerm.toLowerCase());
 
             return matchesDate && matchesStatus && matchesSearch;
         });
 
         setFilteredCustomers(filtered);
-        
+
         // Calcular métricas de resumo
         const totalCustomers = filtered.length;
         const activeCustomers = filtered.filter(c => c.status === 'Ativo').length;
         const newCustomers = filtered.filter(c => c.status === 'Novo').length;
         const inactiveCustomers = filtered.filter(c => c.status === 'Inativo').length;
-        
+
         const totalRevenue = filtered.reduce((sum, c) => sum + c.totalPurchases, 0);
         const averagePurchaseValue = totalCustomers > 0 ? (totalRevenue / totalCustomers) : 0;
 

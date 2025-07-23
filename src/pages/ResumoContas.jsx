@@ -23,11 +23,11 @@ export default function ResumoContas() {
         const filterTransactions = (transactions, start, end) => {
             return transactions.filter(item => {
                 const itemDate = new Date(item.date);
-                const startOfDay = start ? new Date(start.setHours(0,0,0,0)) : null;
-                const endOfDay = end ? new Date(end.setHours(23,59,59,999)) : null;
+                const startOfDay = start ? new Date(start.setHours(0, 0, 0, 0)) : null;
+                const endOfDay = end ? new Date(end.setHours(23, 59, 59, 999)) : null;
 
                 return (!startOfDay || itemDate >= startOfDay) &&
-                       (!endOfDay || itemDate <= endOfDay);
+                    (!endOfDay || itemDate <= endOfDay);
             });
         };
 

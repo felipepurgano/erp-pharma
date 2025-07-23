@@ -325,7 +325,7 @@ export default function Compras() {
                         </div>
                     </div>
                     <div className={styles.formRow}>
-                         <div className={styles.inputGroup}>
+                        <div className={styles.inputGroup}>
                             <label htmlFor="descontoGeral">Desconto Geral (%):</label>
                             <input
                                 id="descontoGeral"
@@ -404,7 +404,7 @@ export default function Compras() {
                             ))}
                         </div>
                     )}
-                     {termoBuscaProduto.length >=3 && produtosEncontrados.length === 0 && (
+                    {termoBuscaProduto.length >= 3 && produtosEncontrados.length === 0 && (
                         <div className={styles.noItemsMessage}>Nenhum produto encontrado.</div>
                     )}
 
@@ -443,7 +443,7 @@ export default function Compras() {
                                 disabled={!produtoSelecionadoParaAdd}
                             />
                         </div>
-                         <div className={styles.inputGroup}>
+                        <div className={styles.inputGroup}>
                             <label htmlFor="descontoItem">Desconto Item (%):</label>
                             <input
                                 id="descontoItem"

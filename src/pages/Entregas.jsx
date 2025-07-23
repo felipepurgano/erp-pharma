@@ -29,23 +29,23 @@ export default function Entregas() {
     useEffect(() => {
         let filtered = mockDeliveryData.filter(delivery => {
             const deliveryDate = new Date(delivery.date);
-            const startOfDay = startDate ? new Date(startDate.setHours(0,0,0,0)) : null;
-            const endOfDay = endDate ? new Date(endDate.setHours(23,59,59,999)) : null;
+            const startOfDay = startDate ? new Date(startDate.setHours(0, 0, 0, 0)) : null;
+            const endOfDay = endDate ? new Date(endDate.setHours(23, 59, 59, 999)) : null;
 
             const matchesDate = (!startOfDay || deliveryDate >= startOfDay) &&
-                                (!endOfDay || deliveryDate <= endOfDay);
+                (!endOfDay || deliveryDate <= endOfDay);
             const matchesStatus = !selectedStatus || delivery.status === selectedStatus;
             const matchesDeliveryPerson = !selectedDeliveryPerson || delivery.deliveryPerson === selectedDeliveryPerson;
-            const matchesSearch = !searchTerm || 
-                                  delivery.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                  delivery.orderId.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                  delivery.address.toLowerCase().includes(searchTerm.toLowerCase());
+            const matchesSearch = !searchTerm ||
+                delivery.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                delivery.orderId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                delivery.address.toLowerCase().includes(searchTerm.toLowerCase());
 
             return matchesDate && matchesStatus && matchesDeliveryPerson && matchesSearch;
         });
 
         setFilteredDeliveries(filtered);
-        
+
         // Calcular métricas de resumo
         const totalDeliveries = filtered.length;
         const pendingDeliveries = filtered.filter(d => d.status === 'Pendente').length;

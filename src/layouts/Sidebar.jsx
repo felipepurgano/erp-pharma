@@ -35,7 +35,7 @@ const sidebarLayout = [
       { name: "SPED", path: "/sped", icon: <FiClipboard /> },
       { name: "Área fiscal", path: "/area-fiscal", icon: <FiFileText /> },
       { name: "Consulta de preços", path: "/consulta-precos", icon: <FiDollarSign /> },
-      { name: "Caixa", path: "/caixa", icon: <FiDollarSign /> },
+      { name: "Caixa (PDV)", path: "/caixa", icon: <FiDollarSign /> },
       { name: "Compras", path: "/compras", icon: <FiBox /> },
       { name: "Faltas e encomendas", path: "/faltas-encomendas", icon: <FiPackage /> },
       { name: "Orçamentos", path: "/orcamentos", icon: <FiFileText /> },
@@ -139,16 +139,14 @@ export default function Sidebar({ children }) {
                 // A classe dropdownOpen é aplicada se a seção estiver aberta,
                 // independentemente do estado de colapso da sidebar.
                 // O CSS controlará a visibilidade do conteúdo no modo colapsado.
-                className={`${styles.menu} ${
-                  openSections[section.title] ? styles.dropdownOpen : ""
-                }`}
+                className={`${styles.menu} ${openSections[section.title] ? styles.dropdownOpen : ""
+                  }`}
               >
                 {section.items.map((item) => (
                   <li
                     key={item.name}
-                    className={`${styles.menuItem} ${
-                      location.pathname === item.path ? styles.activeItem : ""
-                    }`}
+                    className={`${styles.menuItem} ${location.pathname === item.path ? styles.activeItem : ""
+                      }`}
                     onClick={() => navigate(item.path)}
                   >
                     <span className={styles.icon}>{item.icon}</span>

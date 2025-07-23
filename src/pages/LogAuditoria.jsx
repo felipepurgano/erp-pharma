@@ -31,11 +31,11 @@ export default function AuditLog() {
         // 1. Filtrar por Data
         currentLogs = currentLogs.filter(log => {
             const logDate = new Date(log.timestamp);
-            const startOfDay = startDate ? new Date(startDate.setHours(0,0,0,0)) : null;
-            const endOfDay = endDate ? new Date(endDate.setHours(23,59,59,999)) : null;
+            const startOfDay = startDate ? new Date(startDate.setHours(0, 0, 0, 0)) : null;
+            const endOfDay = endDate ? new Date(endDate.setHours(23, 59, 59, 999)) : null;
 
             return (!startOfDay || logDate >= startOfDay) &&
-                   (!endOfDay || logDate <= endOfDay);
+                (!endOfDay || logDate <= endOfDay);
         });
 
         // 2. Filtrar por Usuário
@@ -60,7 +60,7 @@ export default function AuditLog() {
                 log.description.toLowerCase().includes(lowerCaseSearchTerm)
             );
         }
-        
+
         // Ordenar do mais recente para o mais antigo
         currentLogs.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
@@ -162,7 +162,7 @@ export default function AuditLog() {
                             ))}
                         </select>
                     </div>
-                    
+
                     <div className={styles.filterGroup}>
                         <label>Buscar na Descrição:</label>
                         <input

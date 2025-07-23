@@ -31,7 +31,7 @@ const layout = [
             { name: "SPED", icon: <FiClipboard size={36} /> },
             { name: "Área fiscal", icon: <FiFileText size={36} /> },
             { name: "Consulta de preços", icon: <FiDollarSign size={36} /> },
-            { name: "Caixa", icon: <FiDollarSign size={36} /> },
+            { name: "Caixa (PDV)", icon: <FiDollarSign size={36} /> },
             { name: "Compras", icon: <FiBox size={36} /> },
             // Alterado ícone para FiPackage que pode ser mais representativo
             { name: "Faltas e encomendas", icon: <FiPackage size={36} /> },

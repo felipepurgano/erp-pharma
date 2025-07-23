@@ -35,11 +35,11 @@ export default function ComissaoVendedores() {
     useEffect(() => {
         let filtered = mockProductSales.filter(sale => {
             const saleDate = new Date(sale.date);
-            const startOfDay = startDate ? new Date(startDate.setHours(0,0,0,0)) : null;
-            const endOfDay = endDate ? new Date(endDate.setHours(23,59,59,999)) : null;
+            const startOfDay = startDate ? new Date(startDate.setHours(0, 0, 0, 0)) : null;
+            const endOfDay = endDate ? new Date(endDate.setHours(23, 59, 59, 999)) : null;
 
             const matchesDate = (!startOfDay || saleDate >= startOfDay) &&
-                                (!endOfDay || saleDate <= endOfDay);
+                (!endOfDay || saleDate <= endOfDay);
             const matchesSalesperson = !selectedSalesperson || sale.salesperson === selectedSalesperson;
 
             return matchesDate && matchesSalesperson;
@@ -48,7 +48,7 @@ export default function ComissaoVendedores() {
         // Calcular comissão para cada venda
         let totalSalesValue = 0;
         let totalCommissionEarned = 0;
-        
+
         const salesWithCommission = filtered.map(sale => {
             const itemValue = sale.quantity * sale.price;
             const rate = commissionRates[sale.category] || commissionRates['Default'];

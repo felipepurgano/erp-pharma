@@ -122,7 +122,7 @@ function Login() {
                         {isLoading ? (
                             <>
                                 <span className="spinner" />
-                                Entrando...
+                                Entrando....
                             </>
                         ) : (
                             <>
